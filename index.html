@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Priscilla Moreira | Terapeuta Analista</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                red: '#ef4444',
+                darkRed: '#b91c1c',
+                black: '#0f0f0f',
+                darker: '#000000',
+                white: '#ffffff',
+                gray: '#f9fafb',
+                textMuted: '#9ca3af', // gray-400
+              }
+            },
+            fontFamily: {
+              sans: ['Montserrat', 'sans-serif'],
+              heading: ['Poppins', 'sans-serif'],
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      body {
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      /* Dark Mode (Default) */
+      html.dark body {
+        background-color: #000000;
+        color: #ffffff;
+      }
+
+      /* Light Mode */
+      html.light body {
+        background-color: #f9fafb;
+        color: #0f0f0f;
+      }
+
+      /* Custom Scrollbar for a sleek look */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      /* Dark Scrollbar */
+      html.dark ::-webkit-scrollbar-track {
+        background: #0f0f0f; 
+      }
+      html.dark ::-webkit-scrollbar-thumb {
+        background: #333; 
+        border-radius: 4px;
+      }
+
+      /* Light Scrollbar */
+      html.light ::-webkit-scrollbar-track {
+        background: #e5e7eb;
+      }
+      html.light ::-webkit-scrollbar-thumb {
+        background: #9ca3af;
+        border-radius: 4px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: #ef4444; 
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react-router-dom": "https://aistudiocdn.com/react-router-dom@^7.9.6"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>

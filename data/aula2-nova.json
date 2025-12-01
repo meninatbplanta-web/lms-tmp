@@ -1,0 +1,333 @@
+{
+  "page_structure": {
+    "banner": {
+      "image_url": "https://priscilla-moreira.com/imagens/minicurso-banner1.jpg",
+      "alt_text": "Banner da Formação em Análise Corporal"
+    },
+    "header_info": {
+      "badge": {
+        "text": "FORMAÇÃO GRATUITA",
+        "color": "blue"
+      },
+      "title": "Minicurso de Introdução à Análise Corporal"
+    },
+    "lesson_list": {
+      "title": "CRONOGRAMA",
+      "lessons": [
+        {
+          "id": 1,
+          "title": "Aula 1: Fundamentos da Leitura Biológica",
+          "duration": "60:00",
+          "status": "active"
+        },
+        {
+          "id": 2,
+          "title": "A Origem Emocional das Doenças",
+          "release_date": "2025-12-03T20:00:00",
+          "status": "locked"
+        },
+        {
+          "id": 3,
+          "title": "Prática: Análise em Tempo Real",
+          "release_date": "2025-12-05T20:00:00",
+          "status": "locked"
+        },
+        {
+          "id": 4,
+          "title": "Carreira e Atuação Profissional",
+          "release_date": "2025-12-07T15:00:00",
+          "status": "locked"
+        }
+      ]
+    },
+    "video_player": {
+      "placeholder_text": "ESTREIA DIA 01/12 às 20h",
+      "locked_message": {
+        "title": "📅 AULA INAUGURAL AGENDADA",
+        "text": "A transmissão oficial começará dia 01/12 às 20h. Prepare seu material."
+      }
+    }
+  },
+  "lesson_content": {
+    "metadata": {
+      "title": "Aula 1: Fundamentos da Leitura Biológica (Versão 2.0 - Interativa)",
+      "subtitle": "O Mapa Científico da Mente: Desvende os 5 Perfis",
+      "completion_percentage": 25,
+      "gamification": {
+        "pointsPerSection": 50,
+        "badges": {
+          "iniciante": {
+            "label": "Estudante",
+            "icon": "📚",
+            "color": "bg-gray-100 text-gray-800",
+            "threshold": 3
+          },
+          "explorador": {
+            "label": "Analista Jr.",
+            "icon": "📝",
+            "color": "bg-blue-100 text-blue-800",
+            "threshold": 6
+          },
+          "mestre": {
+            "label": "Analista de Elite",
+            "icon": "🎓",
+            "color": "bg-green-100 text-green-800",
+            "threshold": 11
+          }
+        }
+      }
+    },
+    "header": {
+      "progressLabel": "Progresso da Certificação",
+      "certificateInfo": {
+        "title": "Meta: 100%",
+        "text": "Complete as 4 aulas para liberar o Certificado Profissional."
+      }
+    },
+    "sections": [
+      {
+        "id": "intro",
+        "type": "intro",
+        "title": "Bem-vindo à sua formação técnica",
+        "subtitle": "\"Você não precisa de intuição. Você precisa de método.\"",
+        "content": [
+          "Muitos acreditam que 'ler pessoas' é um dom. Nesta formação, provaremos que é ciência. O formato do corpo humano é determinado por um processo biológico exato chamado mielinização.",
+          "\"Tudo o que você viveu na primeira infância moldou sua anatomia. O corpo é, literalmente, a parte visível da mente. Como futuro analista, você aprenderá a traduzir esse mapa.\""
+        ],
+        "next_step": {
+          "label": "Começar Desafio de Decodificação ↓",
+          "target_id": "multimedia"
+        }
+      },
+      {
+        "id": "multimedia",
+        "type": "multimedia",
+        "title": "1. Material de Imersão Rápida",
+        "items": [
+          {
+            "id": "audio_summary",
+            "type": "audio",
+            "title": "Podcast da Aula (Briefing Executivo)",
+            "subtitle": "Conceitos base para ouvir no trânsito (12 min)",
+            "url": "https://priscilla-moreira.com/imagens/audio-cpl1.m4a",
+            "buttonText": "Concluir Podcast"
+          },
+          {
+            "id": "video_summary",
+            "type": "video",
+            "title": "Síntese Visual da Aula",
+            "subtitle": "Visão geral das Armaduras de Caráter",
+            "url": "https://priscilla-moreira.com/imagens/video-cpl1.mp4",
+            "buttonText": "Concluir Vídeo"
+          }
+        ],
+        "next_step": {
+          "label": "Avançar para Base Teórica Interativa →",
+          "target_id": "fundamentos"
+        }
+      },
+      {
+        "id": "tabs",
+        "type": "tabs",
+        "tabs": [
+          {
+            "id": "fundamentos",
+            "label": "2. Base Teórica (Flashcards)",
+            "content": [
+              {
+                "id": "fundamentos_1",
+                "type": "flip_card",
+                "front_title": "O que o corpo realmente comunica?",
+                "front_text": "Clique para Decodificar o Conceito",
+                "back_title": "A Biologia do Comportamento",
+                "back_text": "O corpo não é aleatório. Ele reflete as necessidades neurológicas vividas em 5 fases de desenvolvimento. Se a necessidade não foi atendida, o corpo criou uma defesa física e comportamental.",
+                "buttonText": "Decodificado"
+              },
+              {
+                "id": "fundamentos_key",
+                "type": "flip_card",
+                "front_title": "Qual o processo que molda a anatomia?",
+                "front_text": "Clique para Revelar o Conceito Chave",
+                "back_title": "Conceito Chave: Mielinização",
+                "back_text": "Processo que ocorre do útero aos 5 anos. Cada etapa molda uma região do corpo e define o traço de caráter predominante do indivíduo.",
+                "buttonText": "Entendi o Conceito"
+              }
+            ],
+            "next_step": {
+              "label": "Estudar os 5 Perfis da Mente →",
+              "target_id": "tracos_carater"
+            }
+          },
+          {
+            "id": "tracos_carater",
+            "label": "3. Os 5 Perfis (Interativo)",
+            "content": [
+              {
+                "id": "esquizoide",
+                "type": "trait_card_interactive",
+                "name": "1. O ESQUIZOIDE (Racional)",
+                "archetype": "Foco: Ideias e Lógica",
+                "icon": "Brain",
+                "color": "text-purple-500",
+                "body": "Magro, alongado, articulações visíveis. Energia concentrada na cabeça.",
+                "pain": "Dor Existencial: Rejeição.",
+                "power": "Recurso: Criatividade e raciocínio lógico.",
+                "buttonText": "Estudo Concluído"
+              },
+              {
+                "id": "oral",
+                "type": "trait_card_interactive",
+                "name": "2. O ORAL (Comunicador)",
+                "archetype": "Foco: Sentimentos e Conexão",
+                "icon": "Heart",
+                "color": "text-pink-500",
+                "body": "Formas arredondadas, aspecto 'macio'. Olhar conectivo.",
+                "pain": "Dor Existencial: Abandono.",
+                "power": "Recurso: Acolhimento, comunicação e empatia.",
+                "buttonText": "Estudo Concluído"
+              },
+              {
+                "id": "psicopata",
+                "type": "trait_card_interactive",
+                "name": "3. O PSICOPATA (Articulador)",
+                "archetype": "Foco: Liderança e Negociação",
+                "icon": "Trophy",
+                "color": "text-amber-500",
+                "body": "Triângulo invertido (ombros largos). Postura imponente.",
+                "pain": "Dor Existencial: Manipulação.",
+                "power": "Recurso: Capacidade de liderar e vender ideias.",
+                "buttonText": "Estudo Concluído"
+              },
+              {
+                "id": "masoquista",
+                "type": "trait_card_interactive",
+                "name": "4. O MASOQUISTA (Planejador)",
+                "archetype": "Foco: Segurança e Detalhes",
+                "icon": "Shield",
+                "color": "text-slate-600",
+                "body": "Quadrado, musculatura compacta e tensa. Bumbum achatado.",
+                "pain": "Dor Existencial: Humilhação.",
+                "power": "Recurso: Consistência, lealdade e força de execução.",
+                "buttonText": "Estudo Concluído"
+              },
+              {
+                "id": "rigido",
+                "type": "trait_card_interactive",
+                "name": "5. O RÍGIDO (Executor)",
+                "archetype": "Foco: Agilidade e Perfeição",
+                "icon": "Star",
+                "color": "text-red-500",
+                "body": "Harmônico, curvas definidas (violão). Aparência atlética.",
+                "pain": "Dor Existencial: Traição/Troca.",
+                "power": "Recurso: Competitividade e busca pela excelência.",
+                "buttonText": "Estudo Concluído"
+              }
+            ],
+            "next_step": {
+              "label": "Ver Alerta de Saúde (Psicossomática) →",
+              "target_id": "alerta_saude"
+            }
+          },
+          {
+            "id": "alerta_saude",
+            "label": "4. Psicossomática (Alerta)",
+            "content": [
+              {
+                "id": "alerta_saude_content",
+                "type": "alert_card",
+                "title": "⚠️ Sintomas Físicos e Emoções",
+                "subtitle": "Quando o traço entra na dor",
+                "text": "Como terapeuta, você identificará que doenças recorrentes muitas vezes são gritos do traço de caráter em sofrimento. O corpo somatiza o que a mente cala.",
+                "list": [
+                  "Gastrite nervosa (Oral na dor)",
+                  "Enxaqueca crônica (Esquizoide na dor)",
+                  "Travamento lombar (Masoquista na dor)"
+                ],
+                "buttonText": "Entendi a Relação"
+              }
+            ],
+            "next_step": {
+              "label": "Ir para Prática de Observação Técnica →",
+              "target_id": "exercises-section"
+            }
+          }
+        ]
+      },
+      {
+        "id": "exercises-section",
+        "type": "exercise",
+        "title": "5. Prática de Observação Técnica",
+        "content": {
+          "id": "ex_analise",
+          "title": "Treinando o Olhar Analítico",
+          "instructions": [
+            "Observe pessoas ao seu redor ou fotos (sem julgar, apenas analise tecnicamente).",
+            "Identifique: Quem possui formas mais 'quadradas' e tensas?",
+            "Identifique: Quem possui formas arredondadas e olhar 'conectivo'?",
+            "Anote suas hipóteses no campo abaixo para fixar o conteúdo."
+          ],
+          "placeholder": "Minhas anotações técnicas...",
+          "buttonText": "Registrar Análise"
+        },
+        "next_step": {
+          "label": "Fazer Teste de Conhecimento →",
+          "target_id": "quiz-section"
+        }
+      },
+      {
+        "id": "quiz-section",
+        "type": "quiz",
+        "title": "6. Desafio de Decodificação (Quiz)",
+        "questions": [
+          {
+            "id": 1,
+            "question": "Qual traço apresenta morfologia quadrada e tensão muscular como defesa?",
+            "options": [
+              "Oral",
+              "Masoquista",
+              "Rígido"
+            ],
+            "correctAnswer": "Masoquista"
+          },
+          {
+            "id": 2,
+            "question": "O corpo em triângulo invertido (ombros largos) é característico de qual perfil?",
+            "options": [
+              "Psicopata",
+              "Esquizoide",
+              "Oral"
+            ],
+            "correctAnswer": "Psicopata"
+          },
+          {
+            "id": 3,
+            "question": "Qual traço tem a 'comunicação e o sentir' como principal recurso?",
+            "options": [
+              "Rígido",
+              "Oral",
+              "Masoquista"
+            ],
+            "correctAnswer": "Oral"
+          }
+        ],
+        "next_step": {
+          "label": "Finalizar Missão da Aula 1",
+          "target_id": "completion_card"
+        }
+      },
+      {
+        "id": "completion_card",
+        "type": "lesson_completion",
+        "status": "locked",
+        "title": "PARABÉNS! 25% CONCLUÍDO",
+        "message": "Você finalizou o estudo preparatório da Aula 1. Agora, aguarde a liberação da Aula 2 para continuar sua jornada rumo ao Certificado.",
+        "next_lesson_info": {
+          "title": "Aula 2: A Origem Emocional das Doenças",
+          "release_date": "03/12 às 20h",
+          "buttonText": "Definir Lembrete da Aula 2",
+          "action": "calendar_reminder"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,736 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 1 – Fundamentos da Análise Corporal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-red: #D62828;
+            --dark-text: #111111;
+            --light-bg: #FFFFFF;
+            --gray-100: #F5F5F5;
+            --gray-200: #E5E5E5;
+            --gray-300: #E0E0E0;
+            --gray-600: #757575;
+            --gray-800: #424242;
+            --success-green: #22C55E;
+            --spacing-xs: 8px;
+            --spacing-sm: 16px;
+            --spacing-md: 24px;
+            --spacing-lg: 40px;
+            --spacing-xl: 60px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--light-bg);
+            color: var(--dark-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gray-200);
+            z-index: 1000;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-red), #FF6B6B);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        /* Container */
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: var(--spacing-md);
+            padding-top: var(--spacing-lg);
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: var(--spacing-lg) var(--spacing-md) var(--spacing-md);
+            animation: fadeInDown 0.8s ease;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--dark-text);
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+
+        .header p {
+            font-size: 0.95rem;
+            color: var(--gray-600);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .meta-info {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-md);
+            flex-wrap: wrap;
+            margin-top: var(--spacing-md);
+            font-size: 0.85rem;
+            color: var(--gray-600);
+        }
+
+        .meta-info span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .progress-count {
+            font-weight: 700;
+            color: var(--primary-red);
+        }
+
+        .divider {
+            width: 80px;
+            height: 4px;
+            background: var(--primary-red);
+            margin: var(--spacing-md) auto;
+            border-radius: 2px;
+        }
+
+        /* Banner */
+        .banner-image {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            margin: var(--spacing-lg) 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Table of Contents */
+        .table-of-contents {
+            background: var(--gray-100);
+            border-left: 4px solid var(--primary-red);
+            padding: var(--spacing-md);
+            border-radius: 8px;
+            margin: var(--spacing-lg) 0;
+        }
+
+        .table-of-contents h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-sm);
+            color: var(--dark-text);
+        }
+
+        .table-of-contents ul {
+            list-style: none;
+        }
+
+        .table-of-contents li {
+            margin: var(--spacing-xs) 0;
+        }
+
+        .table-of-contents a {
+            color: var(--gray-800);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .table-of-contents a:hover {
+            color: var(--primary-red);
+        }
+
+        .toc-number {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background: var(--primary-red);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        /* Content Sections */
+        .content-section {
+            margin: var(--spacing-xl) 0;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .content-section:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .content-section:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .content-section:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .progress-check {
+            margin-top: 8px;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: var(--success-green);
+        }
+
+        .content-section h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark-text);
+            margin-bottom: var(--spacing-sm);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .section-icon {
+            font-size: 1.75rem;
+        }
+
+        .content-section p {
+            margin-bottom: var(--spacing-md);
+            color: var(--gray-800);
+            font-size: 1rem;
+        }
+
+        .content-section ul {
+            margin: var(--spacing-md) 0;
+            padding-left: var(--spacing-lg);
+        }
+
+        .content-section li {
+            margin: var(--spacing-sm) 0;
+            color: var(--gray-800);
+        }
+
+        /* Highlight Cards */
+        .highlight-card {
+            background: linear-gradient(135deg, #FFF5F5 0%, #FFE5E5 100%);
+            border-left: 4px solid var(--primary-red);
+            padding: var(--spacing-md);
+            border-radius: 8px;
+            margin: var(--spacing-md) 0;
+        }
+
+        .highlight-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary-red);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .highlight-card p {
+            margin-bottom: 0;
+            font-size: 0.95rem;
+        }
+
+        /* Quote Section */
+        .quote-section {
+            background: var(--gray-100);
+            padding: var(--spacing-lg);
+            border-radius: 12px;
+            margin: var(--spacing-xl) 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .quote-section::before {
+            content: '"';
+            font-size: 4rem;
+            color: var(--primary-red);
+            opacity: 0.2;
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-family: Georgia, serif;
+        }
+
+        .quote-section blockquote {
+            font-size: 1.25rem;
+            font-style: italic;
+            color: var(--dark-text);
+            margin-bottom: var(--spacing-md);
+            line-height: 1.6;
+        }
+
+        .quote-author {
+            font-weight: 700;
+            color: var(--primary-red);
+            font-size: 1rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-red) 0%, #C41E1E 100%);
+            color: white;
+            padding: var(--spacing-lg);
+            border-radius: 12px;
+            text-align: center;
+            margin: var(--spacing-xl) 0;
+        }
+
+        .cta-section h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .cta-section p {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .cta-button {
+            background: white;
+            color: var(--primary-red);
+            border: none;
+            padding: 14px 32px;
+            font-size: 1rem;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--primary-red);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.2s ease;
+            z-index: 999;
+            box-shadow: 0 4px 12px rgba(214, 40, 40, 0.3);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 16px rgba(214, 40, 40, 0.4);
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .container {
+                padding: var(--spacing-sm);
+            }
+
+            .meta-info {
+                font-size: 0.8rem;
+            }
+
+            .content-section h2 {
+                font-size: 1.25rem;
+            }
+
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Progress Bar -->
+    <div class="progress-bar">
+        <div class="progress-bar-fill" id="progressBarFill"></div>
+    </div>
+
+    <!-- Container -->
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>Aula 1 – Fundamentos da Análise Corporal</h1>
+            <p>Módulo 1 – Minicurso Terapeuta Analista Corporal</p>
+            <div class="divider"></div>
+            <div class="meta-info">
+                <span>⏱️ 15-20 min de leitura</span>
+                <span>📊 <span class="progress-count" id="progressCount">0/8</span> seções concluídas</span>
+            </div>
+        </div>
+
+        <!-- Banner -->
+        <img src="https://priscilla-moreira.com/imagens/minicurso-banner1.jpg" alt="Banner Minicurso"
+            class="banner-image">
+
+        <!-- Table of Contents -->
+        <nav class="table-of-contents">
+            <h3>📚 Nesta Aula</h3>
+            <ul>
+                <li><a href="#secao1"><span class="toc-number">1</span> Introdução</a></li>
+                <li><a href="#secao2"><span class="toc-number">2</span> O que é Análise Corporal</a></li>
+                <li><a href="#secao3"><span class="toc-number">3</span> O Corpo como Mapa Vivo</a></li>
+
+                <li><a href="#secao5"><span class="toc-number">5</span> Primeiros Passos na Observação</a></li>
+                <li><a href="#secao6"><span class="toc-number">6</span> Você Já Começou a Praticar</a></li>
+                <li><a href="#secao7"><span class="toc-number">7</span> Mensagem da Priscilla</a></li>
+                <li><a href="#secao8"><span class="toc-number">8</span> Seus Próximos Passos</a></li>
+            </ul>
+        </nav>
+
+        <!-- Section 1: Introdução -->
+        <section id="secao1" class="content-section">
+            <div class="section-header">
+                <input type="checkbox" class="progress-check" data-section="1">
+                <div>
+                    <h2><span class="section-icon">🎯</span> Introdução</h2>
+                </div>
+            </div>
+            <p>Bem-vindo à primeira aula do Minicurso de Terapeuta Analista Corporal! Esta é uma jornada transformadora
+                que vai mudar a forma como você enxerga as pessoas, os relacionamentos e, principalmente, a si mesmo.
+            </p>
+            <p>A Análise Corporal é uma abordagem terapêutica profunda que reconhece o corpo como um arquivo vivo de
+                nossas experiências emocionais. Cada postura, cada tensão muscular, cada padrão de movimento conta uma
+                história sobre quem somos e o que vivemos.</p>
+            <div class="highlight-card">
+                <h3>💡 Por que este conhecimento é importante?</h3>
+                <p>Porque nos permite acessar informações que a mente consciente muitas vezes esconde ou reprime. O
+                    corpo não mente – ele revela verdades profundas sobre nossos traumas, medos, desejos e potenciais.
+                </p>
+            </div>
+        </section>
+
+        <!-- Section 2: O que é Análise Corporal -->
+        <section id="secao2" class="content-section">
+            <div class="section-header">
+                <input type="checkbox" class="progress-check" data-section="2">
+                <div>
+                    <h2><span class="section-icon">🔍</span> O que é Análise Corporal</h2>
+                </div>
+            </div>
+            <p>A Análise Corporal é um método terapêutico que integra conhecimentos da psicanálise, psicologia corporal,
+                neurociência e constelação familiar para compreender o ser humano de forma integral.</p>
+            <p>Desenvolvida a partir dos trabalhos de Wilhelm Reich, Alexander Lowen e outros pioneiros da psicologia
+                somática, esta abordagem reconhece que:</p>
+            <ul>
+                <li><strong>O corpo armazena memórias emocionais</strong> – Traumas e experiências ficam registrados em
+                    nossa musculatura e postura</li>
+                <li><strong>Padrões corporais revelam padrões emocionais</strong> – A forma como nos movemos reflete
+                    como nos relacionamos com o mundo</li>
+                <li><strong>A cura passa pelo corpo</strong> – Não basta apenas compreender intelectualmente; é preciso
+                    liberar as tensões físicas</li>
+            </ul>
+            <div class="highlight-card">
+                <h3>🎓 Fundamentos Científicos</h3>
+                <p>Estudos em neurociência confirmam que memórias traumáticas são armazenadas no sistema nervoso e podem
+                    ser acessadas através do trabalho corporal. A plasticidade neural nos mostra que é possível
+                    reprogramar padrões antigos.</p>
+            </div>
+        </section>
+
+        <!-- Section 3: O Corpo como Mapa Vivo -->
+        <section id="secao3" class="content-section">
+            <div class="section-header">
+                <input type="checkbox" class="progress-check" data-section="3">
+                <div>
+                    <h2><span class="section-icon">🗺️</span> O Corpo como Mapa Vivo</h2>
+                </div>
+            </div>
+            <p>Imagine que seu corpo é um mapa detalhado de toda a sua história emocional. Cada região guarda
+                informações específicas:</p>
+            <ul>
+                <li><strong>Ombros tensos</strong> – Podem indicar excesso de responsabilidade ou peso emocional</li>
+                <li><strong>Mandíbula travada</strong> – Frequentemente relacionada a raiva reprimida ou necessidade de
+                    controle</li>
+                <li><strong>Peito retraído</strong> – Pode revelar medo de se expor ou histórico de rejeição</li>
+                <li><strong>Pelvis bloqueada</strong> – Muitas vezes conectada a questões de sexualidade ou criatividade
+                    reprimida</li>
+            </ul>
+            <p>Ao aprender a "ler" este mapa, você desenvolve uma capacidade extraordinária de compreender as pessoas em
+                um nível muito mais profundo do que apenas suas palavras.</p>
+            <div class="highlight-card">
+                <h3>✨ O Poder da Observação</h3>
+                <p>Um terapeuta analista corporal treinado consegue identificar padrões emocionais apenas observando
+                    como uma pessoa entra na sala, como ela se senta, como respira. É uma habilidade que se desenvolve
+                    com prática e estudo.</p>
+            </div>
+        </section>
+
+        <!-- Section 4: Qualquer Pessoa Pode Aprender -->
+        <section id="secao4" class="content-section">
+            <div class="section-header">
+                <input type="checkbox" class="progress-check" data-section="4">
+                <div>
+                    <h2><span class="section-icon">🌟</span> Qualquer Pessoa Pode Aprender</h2>
+                </div>
+            </div>
+            <p>Uma das perguntas mais frequentes que recebo é: "Eu preciso ter formação em psicologia para me tornar um
+                terapeuta analista corporal?"</p>
+            <p>A resposta é: <strong>NÃO!</strong></p>
+            <p>Embora conhecimentos prévios em psicologia possam ser úteis, eles não são obrigatórios. O que você
+                realmente precisa é:</p>
+            <ul>
+                <li><strong>Curiosidade genuína</strong> sobre o comportamento humano</li>
+                <li><strong>Empatia e sensibilidade</strong> para acolher as dores dos outros</li>
+                <li><strong>Compromisso com seu próprio processo</strong> de autoconhecimento</li>
+                <li><strong>Disposição para estudar e praticar</strong> consistentemente</li>
+            </ul>
+            <div class="highlight-card">
+                <h3>💪 Você Tem o Que é Preciso</h3>
+                <p>Se você chegou até aqui, já demonstrou interesse e abertura. Isso é mais importante do que qualquer
+                    diploma. A formação em Análise Corporal vai te ensinar tudo o que você precisa saber, passo a passo.
+                </p>
+            </div>
+        </section>
+
+        <!-- Section 5: Primeiros Passos na Observação -->
+        <section id="secao5" class="content-section">
+            <div class="section-header">
+                <input type="checkbox" class="progress-check" data-section="5">
+                <div>
+                    <h2><span class="section-icon">👁️</span> Primeiros Passos na Observação</h2>
+                </div>
+            </div>
+            <p>Vamos começar com um exercício prático simples que você pode fazer agora mesmo:</p>
+            <div class="highlight-card">
+                <h3>🎯 Exercício: Observação Atenta</h3>
+                <p><strong>Passo 1:</strong> Nas próximas 24 horas, observe 3 pessoas diferentes em situações cotidianas
+                    (pode ser na fila do mercado, no trabalho, em casa).</p>
+                <p><strong>Passo 2:</strong> Preste atenção em:</p>
+                <ul>
+                    <li>Como elas posicionam os ombros?</li>
+                    <li>A respiração é profunda ou superficial?</li>
+                    <li>Os gestos são expansivos ou contidos?</li>
+                    <li>O olhar é direto ou desviado?</li>
+                </ul>
+                <p><strong>Passo 3:</strong> Anote suas observações sem julgamento. Apenas observe e registre.</p>
+            </div>
+            <p>Este exercício simples é o primeiro passo para desenvolver sua capacidade de leitura corporal. Com o
+                tempo, você começará a perceber padrões e conexões que antes eram invisíveis.</p>
+        </section>
+
+        <!-- Section 6: Você Já Começou a Praticar -->
+        <section id="secao6" class="content-section">
+            <div class="section-header">
+                <input type="checkbox" class="progress-check" data-section="6">
+                <div>
+                    <h2><span class="section-icon">🎉</span> Você Já Começou a Praticar</h2>
+                </div>
+            </div>
+            <p>Parabéns! Ao chegar até aqui e absorver esses conceitos iniciais, você já deu o primeiro passo na sua
+                jornada como terapeuta analista corporal.</p>
+            <p>Muitas pessoas acreditam que precisam esperar "estar prontas" para começar. A verdade é que a preparação
+                acontece no caminho. Cada observação que você faz, cada conceito que estuda, cada pessoa que você ajuda
+                – tudo isso é parte do seu desenvolvimento profissional.</p>
+            <div class="highlight-card">
+                <h3>🌱 O Crescimento é Gradual</h3>
+                <p>Assim como uma árvore não cresce da noite para o dia, sua habilidade como terapeuta se desenvolverá
+                    gradualmente. Seja paciente consigo mesmo e celebre cada pequeno progresso.</p>
+            </div>
+            <p>Lembre-se: os melhores terapeutas não são aqueles que sabem tudo, mas aqueles que permanecem eternamente
+                curiosos e comprometidos com o aprendizado contínuo.</p>
+        </section>
+
+        <!-- Section 7: Quote -->
+        <section id="secao7" class="content-section">
+            <div class="section-header">
+                <input type="checkbox" class="progress-check" data-section="7">
+                <div>
+                    <h2><span class="section-icon">💬</span> Mensagem da Priscilla</h2>
+                </div>
+            </div>
+            <div class="quote-section">
+                <blockquote>
+                    "O corpo não mente. Ele é o guardião das nossas verdades mais profundas, das dores que ainda não
+                    conseguimos nomear e dos potenciais que ainda não ousamos manifestar. Aprender a ler o corpo é
+                    aprender a ler a alma."
+                </blockquote>
+                <p class="quote-author">— Priscilla Moreira</p>
+            </div>
+        </section>
+
+        <!-- Section 8: Próximos Passos -->
+        <section id="secao8" class="content-section">
+            <div class="section-header">
+                <input type="checkbox" class="progress-check" data-section="8">
+                <div>
+                    <h2><span class="section-icon">🚀</span> Seus Próximos Passos</h2>
+                </div>
+            </div>
+            <p>Agora que você concluiu esta primeira aula, aqui está o que fazer a seguir:</p>
+            <ul>
+                <li><strong>Pratique o exercício de observação</strong> – Dedique 10-15 minutos por dia observando
+                    pessoas ao seu redor</li>
+                <li><strong>Reflita sobre seu próprio corpo</strong> – Onde você carrega tensões? O que seu corpo está
+                    tentando te dizer?</li>
+                <li><strong>Prepare-se para a Aula 2</strong> – Na próxima aula, vamos explorar "Quais doenças nascem
+                    das emoções"</li>
+                <li><strong>Junte-se à comunidade</strong> – Compartilhe suas descobertas e aprenda com outros alunos
+                </li>
+            </ul>
+            <div class="highlight-card">
+                <h3>📝 Tarefa para Casa</h3>
+                <p>Antes da próxima aula, escreva em um caderno: "Que padrões corporais eu percebo em mim mesmo? Como
+                    meu corpo reflete minhas emoções?"</p>
+                <p>Esta reflexão será valiosa para aprofundar seu autoconhecimento e sua capacidade terapêutica.</p>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <div class="cta-section">
+            <h3>Pronto para a Próxima Aula?</h3>
+            <p>Continue sua jornada de transformação e descubra como as emoções se manifestam em doenças físicas.</p>
+            <button class="cta-button" onclick="alert('Aula 2 será liberada em breve!')">Ir para Aula 2 →</button>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()">↑</button>
+
+    <!-- JavaScript -->
+    <script>
+        // Progress tracking
+        const checkboxes = document.querySelectorAll('.progress-check');
+        const progressCount = document.getElementById('progressCount');
+        const progressBarFill = document.getElementById('progressBarFill');
+        const totalSections = 8;
+
+        // Load saved progress from localStorage
+        function loadProgress() {
+            checkboxes.forEach(checkbox => {
+                const section = checkbox.dataset.section;
+                const isChecked = localStorage.getItem(`section-${section}`) === 'true';
+                checkbox.checked = isChecked;
+            });
+            updateProgress();
+        }
+
+        // Save progress to localStorage
+        function saveProgress(section, isChecked) {
+            localStorage.setItem(`section-${section}`, isChecked);
+        }
+
+        // Update progress counter and bar
+        function updateProgress() {
+            const checkedCount = document.querySelectorAll('.progress-check:checked').length;
+            progressCount.textContent = `${checkedCount}/${totalSections}`;
+            const percentage = (checkedCount / totalSections) * 100;
+            progressBarFill.style.width = `${percentage}%`;
+        }
+
+        // Add event listeners to checkboxes
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', function () {
+                const section = this.dataset.section;
+                saveProgress(section, this.checked);
+                updateProgress();
+            });
+        });
+
+        // Smooth scroll for TOC links
+        document.querySelectorAll('.table-of-contents a').forEach(link => {
+            link.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        // Back to top button
+        const backToTopButton = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', function () {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Initialize on page load
+        loadProgress();
+    </script>
+</body>
+
+</html>
