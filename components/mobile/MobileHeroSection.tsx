@@ -87,13 +87,7 @@ const MobileHeroSection: React.FC<MobileHeroSectionProps> = ({
         </div>
       )}
 
-      <button
-        onClick={onStartStudy}
-        className="mt-4 w-full flex items-center justify-center gap-2 bg-gradient-to-r from-red-600 to-red-500 hover:from-red-700 hover:to-red-600 text-white font-bold py-4 px-6 rounded-xl shadow-lg shadow-red-500/25 transition-all duration-300 active:scale-[0.98]"
-      >
-        <Play className="w-5 h-5" />
-        <span>Começar Estudo</span>
-      </button>
+
     </section>
   );
 };
