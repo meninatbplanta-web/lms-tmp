@@ -14,6 +14,8 @@ import MobileQuizSection from '../components/mobile/MobileQuizSection';
 import MobileCompletionSection from '../components/mobile/MobileCompletionSection';
 import MobileTestimonialsSection from '../components/mobile/MobileTestimonialsSection';
 
+import MobileCountdownSection from '../components/mobile/MobileCountdownSection';
+
 const Aula2MobilePage: React.FC = () => {
   const navigate = useNavigate();
   const { theme, toggleTheme } = useTheme();
@@ -109,6 +111,12 @@ const Aula2MobilePage: React.FC = () => {
       />
 
       <main className="pb-20">
+        <MobileCountdownSection
+          targetDate="2025-12-03T20:00:00"
+          title="AULA 2 DIPONIVEL EM BREVE"
+          subTitle="A transmissão oficial começará dia 03/12/2025 às 20:00"
+        />
+
         <div className="px-4 py-4">
           <MobileHeroSection
             bannerUrl={page_structure.banner.image_url}
@@ -119,6 +127,11 @@ const Aula2MobilePage: React.FC = () => {
             lockedMessage={page_structure.video_player}
             onStartStudy={handleStartStudy}
           />
+          <div className="mt-4 text-sm text-gray-700 dark:text-neutral-300 leading-relaxed">
+            <p>
+              Descubra como o corpo 'grita' aquilo que a boca calou e aprenda a traduzir a raiz emocional por trás das suas dores e doenças. Nesta aula, você vai entender que o sintoma não é o problema, mas a solução que seu corpo encontrou para te avisar que é hora de mudar a rota.
+            </p>
+          </div>
         </div>
 
         {introSection && isSectionCompleted('intro') && (
@@ -176,10 +189,10 @@ const Aula2MobilePage: React.FC = () => {
                         <div
                           key={card.id}
                           className={`p-4 rounded-xl border-l-4 ${card.style === 'blue'
-                              ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
-                              : card.style === 'pink'
-                                ? 'border-pink-500 bg-pink-50 dark:bg-pink-900/20'
-                                : 'border-gray-300 bg-gray-50 dark:bg-gray-800'
+                            ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
+                            : card.style === 'pink'
+                              ? 'border-pink-500 bg-pink-50 dark:bg-pink-900/20'
+                              : 'border-gray-300 bg-gray-50 dark:bg-gray-800'
                             }`}
                         >
                           <h3 className="font-bold text-gray-900 dark:text-white mb-2">
@@ -191,8 +204,8 @@ const Aula2MobilePage: React.FC = () => {
                           <button
                             onClick={() => handleCompleteCard(card.id)}
                             className={`text-sm font-semibold px-3 py-1 rounded-lg transition ${isSectionCompleted(card.id)
-                                ? 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300'
-                                : 'bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300'
+                              ? 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300'
+                              : 'bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300'
                               }`}
                           >
                             {isSectionCompleted(card.id) ? '✓ Concluído' : card.buttonText}
@@ -244,8 +257,8 @@ const Aula2MobilePage: React.FC = () => {
                             <button
                               onClick={() => handleCompleteCard(card.id)}
                               className={`text-sm font-semibold px-3 py-1 rounded-lg transition ${isSectionCompleted(card.id)
-                                  ? 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300'
-                                  : 'bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300'
+                                ? 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300'
+                                : 'bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300'
                                 }`}
                             >
                               {isSectionCompleted(card.id) ? '✓ Concluído' : card.buttonText}
@@ -298,8 +311,8 @@ const Aula2MobilePage: React.FC = () => {
                             <button
                               onClick={() => handleCompleteCard(card.id)}
                               className={`text-sm font-semibold px-3 py-1 rounded-lg transition ${isSectionCompleted(card.id)
-                                  ? 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300'
-                                  : 'bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300'
+                                ? 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300'
+                                : 'bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300'
                                 }`}
                             >
                               {isSectionCompleted(card.id) ? '✓ Concluído' : card.buttonText}
@@ -352,8 +365,8 @@ const Aula2MobilePage: React.FC = () => {
                             <button
                               onClick={() => handleCompleteCard(card.id)}
                               className={`text-sm font-semibold px-3 py-1 rounded-lg transition ${isSectionCompleted(card.id)
-                                  ? 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300'
-                                  : 'bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300'
+                                ? 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300'
+                                : 'bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300'
                                 }`}
                             >
                               {isSectionCompleted(card.id) ? '✓ Concluído' : card.buttonText}
@@ -397,7 +410,7 @@ const Aula2MobilePage: React.FC = () => {
           <MobileCompletionSection
             title={completionSection.title}
             message={completionSection.message}
-            progressPercentage={progress.progressPercentage}
+            progressPercentage={metadata.completion_percentage}
             lessons={page_structure.lesson_list.lessons}
             nextLessonInfo={completionSection.next_lesson_info}
           />

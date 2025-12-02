@@ -1,11 +1,14 @@
 import React from 'react';
 import { Award, Calendar, Bell, Lock, CheckCircle } from 'lucide-react';
 
+import { Link } from 'react-router-dom';
+
 interface LessonInfo {
   id: number;
   title: string;
   release_date?: string;
   status: string;
+  link?: string;
 }
 
 interface MobileCompletionSectionProps {
@@ -35,14 +38,14 @@ const MobileCompletionSection: React.FC<MobileCompletionSectionProps> = ({
         </div>
         <h2 className="text-xl font-bold text-white mb-2">{title}</h2>
         <p className="text-white/90 text-sm mb-4">{message}</p>
-        
+
         <div className="bg-white/20 backdrop-blur-sm rounded-xl p-4">
           <div className="flex items-center justify-between mb-2">
             <span className="text-white/80 text-sm">Progresso Geral</span>
             <span className="text-white font-bold">{progressPercentage}%</span>
           </div>
           <div className="h-2 bg-white/30 rounded-full overflow-hidden">
-            <div 
+            <div
               className="h-full bg-white rounded-full transition-all duration-500"
               style={{ width: `${progressPercentage}%` }}
             />
@@ -60,39 +63,34 @@ const MobileCompletionSection: React.FC<MobileCompletionSectionProps> = ({
           const isLocked = lesson.status === 'locked';
           const isCompleted = index === 0 && progressPercentage >= 25;
 
-          return (
+          const CardContent = (
             <div
-              key={lesson.id}
-              className={`rounded-xl p-4 border-2 transition-all ${
-                isActive
+              className={`rounded-xl p-4 border-2 transition-all ${isActive
                   ? isCompleted
                     ? 'border-green-500 bg-green-50 dark:bg-green-900/20'
                     : 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
                   : 'border-gray-200 dark:border-neutral-700 bg-white dark:bg-neutral-900'
-              }`}
+                }`}
             >
               <div className="flex items-center gap-3">
-                <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${
-                  isCompleted
+                <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${isCompleted
                     ? 'bg-green-100 dark:bg-green-900/50'
                     : isActive
                       ? 'bg-blue-100 dark:bg-blue-900/50'
                       : 'bg-gray-100 dark:bg-neutral-800'
-                }`}>
+                  }`}>
                   {isCompleted ? (
                     <CheckCircle className="w-5 h-5 text-green-600 dark:text-green-400" />
                   ) : isLocked ? (
                     <Lock className="w-5 h-5 text-gray-400 dark:text-neutral-500" />
                   ) : (
-                    <span className={`text-sm font-bold ${
-                      isActive ? 'text-blue-600 dark:text-blue-400' : 'text-gray-500'
-                    }`}>{lesson.id}</span>
+                    <span className={`text-sm font-bold ${isActive ? 'text-blue-600 dark:text-blue-400' : 'text-gray-500'
+                      }`}>{lesson.id}</span>
                   )}
                 </div>
                 <div className="flex-1">
-                  <h4 className={`text-sm font-bold ${
-                    isLocked ? 'text-gray-400 dark:text-neutral-500' : 'text-gray-900 dark:text-white'
-                  }`}>
+                  <h4 className={`text-sm font-bold ${isLocked ? 'text-gray-400 dark:text-neutral-500' : 'text-gray-900 dark:text-white'
+                    }`}>
                     {lesson.title}
                   </h4>
                   {lesson.release_date && (
@@ -115,6 +113,16 @@ const MobileCompletionSection: React.FC<MobileCompletionSectionProps> = ({
               </div>
             </div>
           );
+
+          if (lesson.link) {
+            return (
+              <Link key={lesson.id} to={lesson.link} className="block">
+                {CardContent}
+              </Link>
+            );
+          }
+
+          return <div key={lesson.id}>{CardContent}</div>;
         })}
       </div>
 

@@ -18,7 +18,8 @@
           "id": 1,
           "title": "Aula 1: Fundamentos da Analise Corporal",
           "duration": "60:00",
-          "status": "completed"
+          "status": "completed",
+          "link": "/aula/1"
         },
         {
           "id": 2,
@@ -95,18 +96,10 @@
           {
             "id": "audio_lateralidade",
             "type": "audio",
-            "title": "A Regra da Lateralidade (Áudio)",
+            "title": "Resumo em Áudio: A Regra da Lateralidade",
             "subtitle": "Entenda Lado Direito x Esquerdo (10 min)",
-            "url": "https://priscilla-moreira.com/imagens/audio-cpl2.m4a",
+            "url": "http://priscilla-moreira.com/imagens/cpl2.m4a",
             "buttonText": "Ouvir Explicação"
-          },
-          {
-            "id": "mapa_sintomas",
-            "type": "pdf",
-            "title": "PDF: O Mapa dos Sintomas",
-            "subtitle": "Guia rápido de dores e emoções",
-            "url": "https://priscilla-moreira.com/downloads/mapa-sintomas.pdf",
-            "buttonText": "Baixar PDF"
           }
         ],
         "next_step": {
@@ -342,7 +335,7 @@
             "question": "Dores nos joelhos estão associadas a qual sentimento?",
             "options": [
               "Orgulho e inflexibilidade",
-              "Medo de abandono",
+              "Medo do abandono",
               "Culpa"
             ],
             "correctAnswer": "Orgulho e inflexibilidade"

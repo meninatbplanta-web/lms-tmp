@@ -2,9 +2,15 @@ import React, { useState, useEffect } from 'react';
 
 interface MobileCountdownSectionProps {
   targetDate: string; // ISO format date string
+  title?: string;
+  subTitle?: string;
 }
 
-const MobileCountdownSection: React.FC<MobileCountdownSectionProps> = ({ targetDate }) => {
+const MobileCountdownSection: React.FC<MobileCountdownSectionProps> = ({
+  targetDate,
+  title = "AULA INAUGURAL AGENDADA",
+  subTitle = "A transmissão oficial começará dia 01/12/2025 às 20:00"
+}) => {
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -15,7 +21,7 @@ const MobileCountdownSection: React.FC<MobileCountdownSectionProps> = ({ targetD
   useEffect(() => {
     const calculateTimeLeft = () => {
       const difference = +new Date(targetDate) - +new Date();
-      
+
       if (difference > 0) {
         setTimeLeft({
           days: Math.floor(difference / (1000 * 60 * 60 * 24)),
@@ -37,19 +43,19 @@ const MobileCountdownSection: React.FC<MobileCountdownSectionProps> = ({ targetD
   const formatNumber = (num: number) => String(num).padStart(2, '0');
 
   const handleAddToCalendar = () => {
-    const title = 'Aula Inaugural - Formação Terapeuta Corporal';
+    const eventTitle = 'Aula Inaugural - Formação Terapeuta Corporal';
     const details = 'Aula 1: Fundamentos da Leitura Biológica';
     const location = 'Online';
-    
+
     const startDate = new Date(targetDate);
     const endDate = new Date(startDate.getTime() + 2 * 60 * 60 * 1000); // 2 hours duration
-    
+
     const formatGoogleDate = (date: Date) => {
       return date.toISOString().replace(/-|:|\.\d\d\d/g, '');
     };
-    
-    const googleCalendarUrl = `https://www.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${formatGoogleDate(startDate)}/${formatGoogleDate(endDate)}&details=${encodeURIComponent(details)}&location=${encodeURIComponent(location)}`;
-    
+
+    const googleCalendarUrl = `https://www.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(eventTitle)}&dates=${formatGoogleDate(startDate)}/${formatGoogleDate(endDate)}&details=${encodeURIComponent(details)}&location=${encodeURIComponent(location)}`;
+
     window.open(googleCalendarUrl, '_blank');
   };
 
@@ -60,12 +66,12 @@ const MobileCountdownSection: React.FC<MobileCountdownSectionProps> = ({ targetD
           <div className="flex items-center justify-center gap-2 mb-3">
             <span className="text-3xl">📅</span>
             <h2 className="text-xl font-bold text-gray-900 dark:text-white">
-              AULA INAUGURAL AGENDADA
+              {title}
             </h2>
           </div>
-          
+
           <p className="text-sm text-gray-600 dark:text-neutral-300 mb-6">
-            A transmissão oficial começará dia 01/12/2025 às 20:00
+            {subTitle}
           </p>
 
           <div className="flex justify-center items-center gap-2 mb-6">
@@ -77,9 +83,9 @@ const MobileCountdownSection: React.FC<MobileCountdownSectionProps> = ({ targetD
                 Dias
               </div>
             </div>
-            
+
             <div className="text-3xl text-gray-400 dark:text-neutral-500 mb-4">:</div>
-            
+
             <div className="flex flex-col items-center">
               <div className="text-4xl font-bold text-blue-600 dark:text-blue-400">
                 {formatNumber(timeLeft.hours)}
@@ -88,9 +94,9 @@ const MobileCountdownSection: React.FC<MobileCountdownSectionProps> = ({ targetD
                 Horas
               </div>
             </div>
-            
+
             <div className="text-3xl text-gray-400 dark:text-neutral-500 mb-4">:</div>
-            
+
             <div className="flex flex-col items-center">
               <div className="text-4xl font-bold text-blue-600 dark:text-blue-400">
                 {formatNumber(timeLeft.minutes)}
@@ -99,9 +105,9 @@ const MobileCountdownSection: React.FC<MobileCountdownSectionProps> = ({ targetD
                 Min
               </div>
             </div>
-            
+
             <div className="text-3xl text-gray-400 dark:text-neutral-500 mb-4">:</div>
-            
+
             <div className="flex flex-col items-center">
               <div className="text-4xl font-bold text-blue-600 dark:text-blue-400">
                 {formatNumber(timeLeft.seconds)}
