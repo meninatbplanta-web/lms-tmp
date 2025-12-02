@@ -8,8 +8,6 @@ import MobileHeader from '../components/mobile/MobileHeader';
 import MobileBottomNav from '../components/mobile/MobileBottomNav';
 import MobileHeroSection from '../components/mobile/MobileHeroSection';
 import MobileMediaPlayer from '../components/mobile/MobileMediaPlayer';
-import MobileTheorySection from '../components/mobile/MobileTheorySection';
-import MobileProfileCarousel from '../components/mobile/MobileProfileCarousel';
 import MobileExerciseSection from '../components/mobile/MobileExerciseSection';
 import MobileQuizSection from '../components/mobile/MobileQuizSection';
 import MobileCompletionSection from '../components/mobile/MobileCompletionSection';
@@ -31,7 +29,6 @@ const Aula2MobilePage: React.FC = () => {
   const [activeSection, setActiveSection] = useState('teoria');
   
   const teoriaRef = useRef<HTMLDivElement>(null);
-  const perfisRef = useRef<HTMLDivElement>(null);
   const praticaRef = useRef<HTMLDivElement>(null);
   const quizRef = useRef<HTMLDivElement>(null);
 
@@ -49,19 +46,16 @@ const Aula2MobilePage: React.FC = () => {
   const quizSection = sections.find((s) => s.type === 'quiz');
   const completionSection = sections.find((s) => s.type === 'lesson_completion');
 
-  const fundamentosTab = tabsSection?.tabs?.find((t: any) => t.id === 'fundamentos');
-  const tracosTab = tabsSection?.tabs?.find((t: any) => t.id === 'tracos_carater');
-  const alertaTab = tabsSection?.tabs?.find((t: any) => t.id === 'alerta_saude');
-
-  const theoryCards = fundamentosTab?.content || [];
-  const alertCard = alertaTab?.content?.[0] || null;
-  const profiles = tracosTab?.content || [];
+  // Extrair abas da Aula 2: lateralidade, cabeca_sentidos, nucleo, estrutura
+  const lateralidadeTab = tabsSection?.tabs?.find((t: any) => t.id === 'lateralidade');
+  const cabecaTab = tabsSection?.tabs?.find((t: any) => t.id === 'cabeca_sentidos');
+  const nucleoTab = tabsSection?.tabs?.find((t: any) => t.id === 'nucleo');
+  const estruturaTab = tabsSection?.tabs?.find((t: any) => t.id === 'estrutura');
 
   const handleNavigate = (sectionId: string) => {
     setActiveSection(sectionId);
     const refs: Record<string, React.RefObject<HTMLDivElement>> = {
       teoria: teoriaRef,
-      perfis: perfisRef,
       pratica: praticaRef,
       quiz: quizRef,
     };
@@ -82,17 +76,13 @@ const Aula2MobilePage: React.FC = () => {
     completeSection(itemId);
   };
 
-  const handleCompleteTheory = (itemId: string) => {
-    completeSection(itemId);
-  };
-
-  const handleCompleteProfile = (profileId: string) => {
-    completeSection(profileId);
+  const handleCompleteCard = (cardId: string) => {
+    completeSection(cardId);
   };
 
   const handleCompleteExercise = (text: string) => {
     saveExercise(text);
-    completeSection('ex_analise');
+    completeSection('ex_lateralidade');
   };
 
   const handleCompleteQuiz = (questionIndex: number, isCorrect: boolean) => {
@@ -103,10 +93,11 @@ const Aula2MobilePage: React.FC = () => {
   const badgeLabels: Record<string, string> = {
     iniciante: 'Estudante',
     explorador: 'Analista Jr.',
-    mestre: 'Analista Elite',
+    mestre: 'Analista de Elite',
+    detetive: 'Detetive da Dor',
   };
 
-  const isVideoUnlocked = new Date() >= new Date('2025-12-01T20:00:00');
+  const isVideoUnlocked = new Date() >= new Date('2025-12-03T20:00:00');
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-neutral-950 transition-colors duration-300">
@@ -126,7 +117,7 @@ const Aula2MobilePage: React.FC = () => {
             subtitle={metadata.subtitle}
             badge={page_structure.header_info.badge.text}
             isVideoUnlocked={isVideoUnlocked}
-            lockedMessage={page_structure.video_player.locked_message}
+            lockedMessage={page_structure.video_player}
             onStartStudy={handleStartStudy}
           />
         </div>
@@ -152,7 +143,7 @@ const Aula2MobilePage: React.FC = () => {
         {multimediaSection && (
           <div className="px-4 py-4">
             <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-              📺 Introdução Multimídia
+              📺 {multimediaSection.title}
             </h2>
             <div className="space-y-4">
               {multimediaSection.items.map((item: any) => (
@@ -172,27 +163,202 @@ const Aula2MobilePage: React.FC = () => {
         )}
 
         <div ref={teoriaRef}>
-          <MobileTheorySection
-            theoryCards={theoryCards}
-            alertCard={alertCard}
-            completedItems={progress.completedSections}
-            onComplete={handleCompleteTheory}
-          />
-        </div>
+          {tabsSection && (
+            <div className="px-4 py-4">
+              <div className="space-y-6">
+                {/* Aba 1: Lateralidade */}
+                {lateralidadeTab && (
+                  <div className="bg-white dark:bg-neutral-900 rounded-2xl p-5 border border-gray-100 dark:border-neutral-800">
+                    <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4">
+                      {lateralidadeTab.label}
+                    </h2>
+                    <div className="space-y-4">
+                      {lateralidadeTab.content.map((card: any) => (
+                        <div
+                          key={card.id}
+                          className={`p-4 rounded-xl border-l-4 ${
+                            card.style === 'blue'
+                              ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
+                              : card.style === 'pink'
+                              ? 'border-pink-500 bg-pink-50 dark:bg-pink-900/20'
+                              : 'border-gray-300 bg-gray-50 dark:bg-gray-800'
+                          }`}
+                        >
+                          <h3 className="font-bold text-gray-900 dark:text-white mb-2">
+                            {card.title}
+                          </h3>
+                          <p className="text-sm text-gray-700 dark:text-neutral-300 mb-3">
+                            {card.text}
+                          </p>
+                          <button
+                            onClick={() => handleCompleteCard(card.id)}
+                            className={`text-sm font-semibold px-3 py-1 rounded-lg transition ${
+                              isSectionCompleted(card.id)
+                                ? 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300'
+                                : 'bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300'
+                            }`}
+                          >
+                            {isSectionCompleted(card.id) ? '✓ Concluído' : card.buttonText}
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
 
-        <div ref={perfisRef}>
-          <MobileProfileCarousel
-            profiles={profiles}
-            completedItems={progress.completedSections}
-            onComplete={handleCompleteProfile}
-          />
+                {/* Aba 2: Cabeça e Sentidos */}
+                {cabecaTab && (
+                  <div className="bg-white dark:bg-neutral-900 rounded-2xl p-5 border border-gray-100 dark:border-neutral-800">
+                    <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4">
+                      {cabecaTab.label}
+                    </h2>
+                    <div className="space-y-4">
+                      {cabecaTab.content.map((card: any) => (
+                        <div
+                          key={card.id}
+                          className="p-4 rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800"
+                        >
+                          <div className="flex items-start gap-3 mb-2">
+                            <span className="text-xl">{card.icon}</span>
+                            <div className="flex-1">
+                              <h3 className="font-bold text-gray-900 dark:text-white">
+                                {card.name}
+                              </h3>
+                              <p className="text-xs text-gray-600 dark:text-neutral-400">
+                                {card.archetype}
+                              </p>
+                            </div>
+                          </div>
+                          <p className="text-sm text-gray-700 dark:text-neutral-300 mb-2">
+                            <strong>Corpo:</strong> {card.body}
+                          </p>
+                          <p className="text-sm text-gray-700 dark:text-neutral-300 mb-2">
+                            <strong>Significado:</strong> {card.pain}
+                          </p>
+                          <p className="text-sm text-gray-700 dark:text-neutral-300 mb-3">
+                            <strong>Poder:</strong> {card.power}
+                          </p>
+                          <button
+                            onClick={() => handleCompleteCard(card.id)}
+                            className={`text-sm font-semibold px-3 py-1 rounded-lg transition ${
+                              isSectionCompleted(card.id)
+                                ? 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300'
+                                : 'bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300'
+                            }`}
+                          >
+                            {isSectionCompleted(card.id) ? '✓ Concluído' : card.buttonText}
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Aba 3: Núcleo */}
+                {nucleoTab && (
+                  <div className="bg-white dark:bg-neutral-900 rounded-2xl p-5 border border-gray-100 dark:border-neutral-800">
+                    <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4">
+                      {nucleoTab.label}
+                    </h2>
+                    <div className="space-y-4">
+                      {nucleoTab.content.map((card: any) => (
+                        <div
+                          key={card.id}
+                          className="p-4 rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800"
+                        >
+                          <div className="flex items-start gap-3 mb-2">
+                            <span className="text-xl">{card.icon}</span>
+                            <div className="flex-1">
+                              <h3 className="font-bold text-gray-900 dark:text-white">
+                                {card.name}
+                              </h3>
+                              <p className="text-xs text-gray-600 dark:text-neutral-400">
+                                {card.archetype}
+                              </p>
+                            </div>
+                          </div>
+                          <p className="text-sm text-gray-700 dark:text-neutral-300 mb-2">
+                            <strong>Corpo:</strong> {card.body}
+                          </p>
+                          <p className="text-sm text-gray-700 dark:text-neutral-300 mb-2">
+                            <strong>Significado:</strong> {card.pain}
+                          </p>
+                          <p className="text-sm text-gray-700 dark:text-neutral-300 mb-3">
+                            <strong>Poder:</strong> {card.power}
+                          </p>
+                          <button
+                            onClick={() => handleCompleteCard(card.id)}
+                            className={`text-sm font-semibold px-3 py-1 rounded-lg transition ${
+                              isSectionCompleted(card.id)
+                                ? 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300'
+                                : 'bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300'
+                            }`}
+                          >
+                            {isSectionCompleted(card.id) ? '✓ Concluído' : card.buttonText}
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Aba 4: Estrutura */}
+                {estruturaTab && (
+                  <div className="bg-white dark:bg-neutral-900 rounded-2xl p-5 border border-gray-100 dark:border-neutral-800">
+                    <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4">
+                      {estruturaTab.label}
+                    </h2>
+                    <div className="space-y-4">
+                      {estruturaTab.content.map((card: any) => (
+                        <div
+                          key={card.id}
+                          className="p-4 rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800"
+                        >
+                          <div className="flex items-start gap-3 mb-2">
+                            <span className="text-xl">{card.icon}</span>
+                            <div className="flex-1">
+                              <h3 className="font-bold text-gray-900 dark:text-white">
+                                {card.name}
+                              </h3>
+                              <p className="text-xs text-gray-600 dark:text-neutral-400">
+                                {card.archetype}
+                              </p>
+                            </div>
+                          </div>
+                          <p className="text-sm text-gray-700 dark:text-neutral-300 mb-2">
+                            <strong>Corpo:</strong> {card.body}
+                          </p>
+                          <p className="text-sm text-gray-700 dark:text-neutral-300 mb-2">
+                            <strong>Significado:</strong> {card.pain}
+                          </p>
+                          <p className="text-sm text-gray-700 dark:text-neutral-300 mb-3">
+                            <strong>Poder:</strong> {card.power}
+                          </p>
+                          <button
+                            onClick={() => handleCompleteCard(card.id)}
+                            className={`text-sm font-semibold px-3 py-1 rounded-lg transition ${
+                              isSectionCompleted(card.id)
+                                ? 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300'
+                                : 'bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300'
+                            }`}
+                          >
+                            {isSectionCompleted(card.id) ? '✓ Concluído' : card.buttonText}
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
         </div>
 
         <div ref={praticaRef}>
           {exerciseSection && (
             <MobileExerciseSection
               content={exerciseSection.content}
-              isCompleted={isSectionCompleted('ex_analise')}
+              isCompleted={isSectionCompleted('ex_lateralidade')}
               savedText={progress.exerciseText}
               onComplete={handleCompleteExercise}
             />
@@ -210,7 +376,7 @@ const Aula2MobilePage: React.FC = () => {
           )}
         </div>
 
-        <MobileCountdownSection targetDate="2025-12-01T20:00:00" />
+        <MobileCountdownSection targetDate="2025-12-03T20:00:00" />
 
         <MobileMaterialSection pdfUrl="https://priscilla-moreira.com/imagens/PDF-MINICURSO-ANALISTA-CORPORAL.pdf" />
 
