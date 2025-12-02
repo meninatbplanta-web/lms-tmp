@@ -20,6 +20,7 @@ interface MobileCompletionSectionProps {
     title: string;
     release_date: string;
     buttonText: string;
+    onButtonClick?: () => void;
   };
 }
 
@@ -66,18 +67,18 @@ const MobileCompletionSection: React.FC<MobileCompletionSectionProps> = ({
           const CardContent = (
             <div
               className={`rounded-xl p-4 border-2 transition-all ${isActive
-                  ? isCompleted
-                    ? 'border-green-500 bg-green-50 dark:bg-green-900/20'
-                    : 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
-                  : 'border-gray-200 dark:border-neutral-700 bg-white dark:bg-neutral-900'
+                ? isCompleted
+                  ? 'border-green-500 bg-green-50 dark:bg-green-900/20'
+                  : 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
+                : 'border-gray-200 dark:border-neutral-700 bg-white dark:bg-neutral-900'
                 }`}
             >
               <div className="flex items-center gap-3">
                 <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${isCompleted
-                    ? 'bg-green-100 dark:bg-green-900/50'
-                    : isActive
-                      ? 'bg-blue-100 dark:bg-blue-900/50'
-                      : 'bg-gray-100 dark:bg-neutral-800'
+                  ? 'bg-green-100 dark:bg-green-900/50'
+                  : isActive
+                    ? 'bg-blue-100 dark:bg-blue-900/50'
+                    : 'bg-gray-100 dark:bg-neutral-800'
                   }`}>
                   {isCompleted ? (
                     <CheckCircle className="w-5 h-5 text-green-600 dark:text-green-400" />
@@ -138,7 +139,10 @@ const MobileCompletionSection: React.FC<MobileCompletionSectionProps> = ({
             <p className="text-xs text-amber-700 dark:text-amber-300/80 mb-3">
               Liberação: {nextLessonInfo.release_date}
             </p>
-            <button className="w-full py-2.5 px-4 bg-amber-600 text-white text-sm font-semibold rounded-xl transition-all active:scale-[0.98]">
+            <button
+              onClick={nextLessonInfo.onButtonClick}
+              className="w-full py-2.5 px-4 bg-amber-600 text-white text-sm font-semibold rounded-xl transition-all active:scale-[0.98]"
+            >
               {nextLessonInfo.buttonText}
             </button>
           </div>

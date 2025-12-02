@@ -1,0 +1,166 @@
+{
+  "page_structure": {
+    "banner": {
+      "image_url": "https://priscilla-moreira.com/imagens/minicurso-banner2.jpg",
+      "alt_text": "Banner Aula 3: Fisiognomia"
+    },
+    "header_info": {
+      "badge": {
+        "text": "AULA LIBERADA",
+        "color": "green"
+      },
+      "title": "Minicurso de Introdução à Análise Corporal"
+    },
+    "lesson_list": {
+      "title": "CRONOGRAMA",
+      "lessons": [
+        {
+          "id": 1,
+          "title": "Aula 1: Fundamentos da Análise Corporal",
+          "duration": "60:00",
+          "status": "completed",
+          "link": "/aula/1"
+        },
+        {
+          "id": 2,
+          "title": "Aula 2: O Corpo Grita (Psicossomática)",
+          "duration": "55:00",
+          "status": "completed",
+          "link": "/aula/2"
+        },
+        {
+          "id": 3,
+          "title": "Prática: Fisiognomia (Leitura de Rosto)",
+          "duration": "55:00",
+          "status": "active"
+        },
+        {
+          "id": 4,
+          "title": "Carreira e Atuação Profissional",
+          "release_date": "2025-12-07T15:00:00",
+          "status": "locked"
+        }
+      ]
+    },
+    "video_player": {
+      "video_id": "vid_aula3_cpl_fisiognomia",
+      "thumbnail": "https://priscilla-moreira.com/thumbnails/aula3-rosto.jpg",
+      "placeholder_text": "ASSISTA AGORA: AULA 3",
+      "locked_message": null
+    }
+  },
+  "lesson_content": {
+    "metadata": {
+      "title": "Aula 3: Fisiognomia (Leitura de Rosto)",
+      "subtitle": "O Mapa dos 3 Andares",
+      "completion_percentage": 75,
+      "gamification": {
+        "pointsPerSection": 60,
+        "badges": {
+          "detetive": {
+            "label": "Leitor de Rostos",
+            "icon": "🔍",
+            "color": "bg-indigo-100 text-indigo-800",
+            "threshold": 100
+          }
+        }
+      }
+    },
+    "header": {
+      "progressLabel": "Progresso da Certificação",
+      "certificateInfo": {
+        "title": "Meta: 75%",
+        "text": "Você está quase lá! Complete esta aula para desbloquear o módulo de carreira."
+      }
+    },
+    "sections": [
+      {
+        "id": "sec_intro",
+        "title": "Introdução: O Rosto como Outdoor",
+        "type": "text_block",
+        [cite_start]"content": "O rosto é a única parte que não escondemos com roupa[cite: 5]. [cite_start]Ele é um painel de controle biológico que mostra, em tempo real, quem você é e o que tenta esconder[cite: 9, 10]. [cite_start]Enquanto treinamos a boca para a 'mentira social', os 43 músculos da face respondem mais rápido que o pensamento[cite: 14, 15].",
+        [cite_start]"key_takeaway": "A Fisiognomia é a ciência de ler o caráter e a história estampados na face[cite: 17]."
+      },
+      {
+        "id": "sec_andares",
+        "title": "A Arquitetura: Os 3 Andares da Face",
+        "type": "infographic_text",
+        [cite_start]"content": "Para ler um rosto, dividimos a face em três zonas principais[cite: 26]:",
+        "bullet_points": [
+          "**1º Andar (Zona do Pensar):** Da raiz do cabelo às sobrancelhas. [cite_start]Representa o intelecto, a razão e a lógica[cite: 29].",
+          "**2º Andar (Zona do Sentir):** Das sobrancelhas à ponta do nariz. [cite_start]Representa a emoção, o afeto, o ego e como a pessoa se relaciona[cite: 33, 34].",
+          "**3º Andar (Zona do Agir):** Da ponta do nariz ao queixo. [cite_start]Representa o instinto, a ambição, a sexualidade e o dinheiro[cite: 36, 37]."
+        ]
+      },
+      {
+        "id": "sec_pensar",
+        "title": "Analisando a Zona do Pensar",
+        "type": "detailed_list",
+        "items": [
+          {
+            "feature": "Cabelo Liso",
+            "meaning": "Pensamento linear, lógico, 'preto no branco'. [cite_start]Gosta de ir direto ao ponto[cite: 43, 44]."
+          },
+          {
+            "feature": "Cabelo Cacheado/Ondulado",
+            "meaning": "Mente que conecta tudo, reconsidera e adapta. [cite_start]Mais flexível, porém pode ser mais indecisa [cite: 46-48]."
+          },
+          {
+            "feature": "Entradas/Calvície Frontal",
+            "meaning": "Conflito com autoridade. Dificuldade em receber ordens. [cite_start]Líderes natos ou questionadores [cite: 51-53]."
+          },
+          {
+            "feature": "Vinco Vertical (O '11')",
+            "meaning": "O 'Vinco do Controlador'. [cite_start]Indica uma pessoa analítica, crítica e que não desliga a mente [cite: 55-58]."
+          }
+        ]
+      },
+      {
+        "id": "sec_sentir",
+        "title": "Analisando a Zona do Sentir",
+        "type": "interactive_check",
+        [cite_start]"instruction": "Pegue um espelho e teste a Lateralidade[cite: 20, 77].",
+        "content": "A regra da lateralidade se aplica aos olhos:",
+        "rules": [
+          [cite_start]"**Lado Direito (Pai/Trabalho):** Se o olho direito está caído ou sem brilho, há questões com o masculino ou carreira[cite: 76, 82].",
+          [cite_start]"**Lado Esquerdo (Mãe/Família):** Se o olho esquerdo está diferente, a questão é com o feminino, família ou emoção interna[cite: 77, 85].",
+          [cite_start]"**Sobrancelhas:** Grossas indicam força e impulso (pavio curto)[cite: 68]. [cite_start]Finas indicam delicadeza ou baixa vitalidade (procrastinação)[cite: 71]. [cite_start]Monocelha indica ciúmes e mistura de razão com emoção[cite: 73, 74]."
+        ]
+      },
+      {
+        "id": "sec_agir",
+        "title": "Analisando a Zona do Agir",
+        "type": "grid_layout",
+        "cards": [
+          {
+            "title": "O Nariz (EGO)",
+            [cite_start]"text": "Grande = Ego forte, liderança[cite: 96]. [cite_start]Pequeno/Arrebitado = Colaborativo, dependente de aprovação[cite: 98]. [cite_start]Narinas largas = Gosta de gastar[cite: 99]."
+          },
+          {
+            "title": "A Boca (PRAZER)",
+            [cite_start]"text": "Carnuda = Sensorial, intensa, gosta de gastar[cite: 103]. [cite_start]Fina = Rigidez, controle, 'economiza' dinheiro e afeto[cite: 105, 106]."
+          },
+          {
+            "title": "O Queixo (VONTADE)",
+            [cite_start]"text": "Proeminente = Determinado, ambicioso, briguento[cite: 109]. [cite_start]Retraído = Cede fácil, engole sapo, prefere a paz[cite: 110, 111]."
+          }
+        ]
+      },
+      {
+        "id": "sec_sintese",
+        "title": "Síntese: O Perfil Bomba-Relógio",
+        "type": "warning_block",
+        "content": "A leitura real acontece na combinação. Exemplo da 'Bomba-Relógio': Testa vincada (controle) + Sobrancelha grossa (energia de ataque) + Boca fina (segurando pressão). [cite_start]Essa pessoa vai explodir [cite: 113-118]."
+      },
+      {
+        "id": "sec_cta",
+        "title": "O Próximo Passo",
+        "type": "call_to_action",
+        "text": "Você agora tem um superpoder. O que fará com ele? [cite_start]O mundo está doente emocionalmente e precisa de quem saiba 'ver'[cite: 128, 133].",
+        "button_text": "Quero ser Terapeuta (Ir para Aula 4)",
+        "action_url": "/aula/4",
+        [cite_start]"note": "Na Aula 4, ensinaremos como transformar essa habilidade em profissão[cite: 136]."
+      }
+    ]
+  }
+}

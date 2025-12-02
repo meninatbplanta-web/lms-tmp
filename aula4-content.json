@@ -1,0 +1,122 @@
+{
+  "page_structure": {
+    "banner": {
+      "image_url": "https://priscilla-moreira.com/imagens/minicurso-banner-aula4.jpg",
+      "alt_text": "Banner Aula 4: Carreira e Propósito"
+    },
+    "header_info": {
+      "badge": {
+        "text": "ÚLTIMA AULA",
+        "color": "purple"
+      },
+      "title": "Minicurso de Introdução à Análise Corporal"
+    },
+    "lesson_list": {
+      "title": "CRONOGRAMA",
+      "lessons": [
+        {
+          "id": 1,
+          "title": "Aula 1: Fundamentos da Análise Corporal",
+          "duration": "60:00",
+          "status": "completed",
+          "link": "/aula/1"
+        },
+        {
+          "id": 2,
+          "title": "Aula 2: O Corpo Grita (Psicossomática)",
+          "duration": "55:00",
+          "status": "completed",
+          "link": "/aula/2"
+        },
+        {
+          "id": 3,
+          "title": "Prática: Fisiognomia (Leitura de Rosto)",
+          "duration": "55:00",
+          "status": "completed",
+          "link": "/aula/3"
+        },
+        {
+          "id": 4,
+          "title": "Carreira e Atuação Profissional",
+          "duration": "60:00",
+          "status": "active"
+        }
+      ]
+    },
+    "video_player": {
+      "video_id": "vid_aula4_cpl_carreira",
+      "thumbnail": "https://priscilla-moreira.com/thumbnails/aula4-carreira.jpg",
+      "placeholder_text": "ASSISTA AGORA: AULA 4",
+      "locked_message": null
+    }
+  },
+  "lesson_content": {
+    "metadata": {
+      "title": "Aula 4: O Caminho Profissional",
+      "subtitle": "Transformando Conhecimento em Missão",
+      "completion_percentage": 100,
+      "gamification": {
+        "pointsPerSection": 100,
+        "badges": {
+          "analista": {
+            "label": "Visão Sistêmica",
+            "icon": "🌟",
+            "color": "bg-purple-100 text-purple-800",
+            "threshold": 100
+          }
+        }
+      }
+    },
+    "header": {
+      "progressLabel": "Conclusão do Minicurso",
+      "certificateInfo": {
+        "title": "Curso Concluído",
+        "text": "Parabéns! Você completou a jornada de introdução."
+      }
+    },
+    "sections": [
+      {
+        "id": "sec_recaptulacao",
+        "title": "A Jornada das Chaves",
+        "type": "summary_block",
+        "content": "Chegamos ao final com um molho de chaves na mão. Na Aula 1, descobrimos que o corpo revela a mente. Na Aula 2, ouvimos o grito das doenças e a lateralidade. Na Aula 3, aprendemos a ler o outdoor que é o rosto.",
+        "key_takeaway": "Ter a chave não adianta se você não souber qual porta abrir."
+      },
+      {
+        "id": "sec_cenario",
+        "title": "O Cenário Atual: A Epidemia Silenciosa",
+        "type": "data_insight",
+        "content": "O mercado de saúde emocional vive um momento crítico que exige novos profissionais:",
+        "stats": [
+          {
+            "value": "1º",
+            "label": "Brasil: País mais ansioso do mundo (OMS)"
+          },
+          {
+            "value": "2030",
+            "label": "Estimativa de uma pessoa com depressão por família"
+          },
+          {
+            "value": "NR-1",
+            "label": "Lei que obriga empresas a cuidarem da saúde mental"
+          }
+        ]
+      },
+      {
+        "id": "sec_atuacao",
+        "title": "O Papel do Analista Corporal",
+        "type": "comparison_block",
+        "left_column": {
+          "title": "Abordagem Tradicional",
+          "items": [
+            "Foca no Sintoma",
+            "Usa medicação para 'apagar' a dor",
+            "Processos longos onde o cliente apenas fala"
+          ]
+        },
+        "right_column": {
+          "title": "Analista Corporal",
+          "items": [
+            "Busca a Raiz do problema",
+            "Atua como 'Cirurgião da Alma'",
+            "Identifica a causa emocional (lealdade,
