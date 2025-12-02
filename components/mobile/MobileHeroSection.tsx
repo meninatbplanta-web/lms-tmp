@@ -25,26 +25,49 @@ const MobileHeroSection: React.FC<MobileHeroSectionProps> = ({
 }) => {
   return (
     <section className="relative">
-      <div className="relative w-full aspect-[16/9] overflow-hidden rounded-2xl">
-        <img
-          src={bannerUrl}
-          alt={title}
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-        
-        <div className="absolute bottom-0 left-0 right-0 p-4">
-          <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-blue-600/90 backdrop-blur-sm mb-2">
-            <span className="text-[10px] font-bold text-white uppercase tracking-wide">
-              {badge}
-            </span>
+      {isVideoUnlocked ? (
+        <>
+          <div className="relative w-full aspect-video overflow-hidden rounded-2xl bg-black">
+            <iframe
+              width="100%"
+              height="100%"
+              src="https://www.youtube.com/embed/wo2fdlq54Bc"
+              title="Aula 01: Fundamentos da Leitura Corporal"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="w-full h-full"
+            ></iframe>
           </div>
-          <h1 className="text-xl font-bold text-white leading-tight mb-1">
-            {title}
-          </h1>
-          <p className="text-sm text-white/80">{subtitle}</p>
+          {/* Título Destacado */}
+          <div className="mt-4 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 border-l-4 border-blue-500 rounded-lg">
+            <h2 className="text-lg font-heading font-bold text-gray-900 dark:text-white text-center">
+              Aula 01: Fundamentos da Leitura Corporal
+            </h2>
+          </div>
+        </>
+      ) : (
+        <div className="relative w-full aspect-[16/9] overflow-hidden rounded-2xl">
+          <img
+            src={bannerUrl}
+            alt={title}
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+          
+          <div className="absolute bottom-0 left-0 right-0 p-4">
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-blue-600/90 backdrop-blur-sm mb-2">
+              <span className="text-[10px] font-bold text-white uppercase tracking-wide">
+                {badge}
+              </span>
+            </div>
+            <h1 className="text-xl font-bold text-white leading-tight mb-1">
+              {title}
+            </h1>
+            <p className="text-sm text-white/80">{subtitle}</p>
+          </div>
         </div>
-      </div>
+      )}
 
       {!isVideoUnlocked && (
         <div className="mt-4 bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-950/30 dark:to-orange-950/30 rounded-xl p-4 border border-amber-200 dark:border-amber-800/50">
