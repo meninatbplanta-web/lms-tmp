@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { useTheme } from '../contexts/ThemeContext';
 import { useAula3Progress } from '../hooks/useAula3Progress';
 import aula3Data from '../data/aula3.json';
+import LessonSchedule from '../components/LessonSchedule';
+import LockedLessonModal from '../components/LockedLessonModal';
 import { ArrowUp, Minimize2, Activity, Zap, RefreshCcw, Eye, Mic, Flame, Wind, CheckCircle, AlertTriangle, ArrowRight } from 'lucide-react';
 
 import MobileHeader from '../components/mobile/MobileHeader';
@@ -27,6 +29,7 @@ const Aula3MobilePage: React.FC = () => {
     const isVideoUnlocked = currentLesson?.status === 'active';
 
     const [activeSection, setActiveSection] = useState('teoria');
+    const [showLockedModal, setShowLockedModal] = useState<string | null>(null);
 
     const teoriaRef = useRef<HTMLDivElement>(null);
 
@@ -271,13 +274,19 @@ const Aula3MobilePage: React.FC = () => {
                 />
 
                 <div className="px-4 py-4">
+                    <LessonSchedule
+                        currentLessonId={3}
+                        onLessonChange={(id) => navigate(`/aula/${id}`)}
+                        onLessonLocked={(date) => setShowLockedModal(date)}
+                        completedLessons={[1, 2]}
+                    />
                     <MobileHeroSection
                         bannerUrl={page_structure.banner.image_url}
                         title={metadata.title}
                         subtitle={metadata.subtitle}
                         badge={page_structure.header_info.badge.text}
                         isVideoUnlocked={isVideoUnlocked}
-                        lockedMessage={page_structure.video_player}
+                        lockedMessage={page_structure.video_player.locked_message}
                         onStartStudy={handleStartStudy}
                     />
                 </div>
@@ -305,6 +314,11 @@ const Aula3MobilePage: React.FC = () => {
                 activeSection={activeSection}
                 onNavigate={handleNavigate}
                 completedSections={progress.completedSections}
+            />
+            <LockedLessonModal
+                isOpen={!!showLockedModal}
+                releaseDate={showLockedModal}
+                onClose={() => setShowLockedModal(null)}
             />
         </div>
     );

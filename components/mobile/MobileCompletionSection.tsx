@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Award, Calendar, Bell, Lock, CheckCircle } from 'lucide-react';
+import LessonSchedule from '../LessonSchedule';
+import LockedLessonModal from '../LockedLessonModal';
 
 import { Link } from 'react-router-dom';
 
@@ -31,6 +33,8 @@ const MobileCompletionSection: React.FC<MobileCompletionSectionProps> = ({
   lessons,
   nextLessonInfo,
 }) => {
+  const [showLockedModal, setShowLockedModal] = useState<string | null>(null);
+
   return (
     <section className="py-4 px-4 pb-24">
       <div className="bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl p-6 text-center mb-6">
@@ -58,74 +62,19 @@ const MobileCompletionSection: React.FC<MobileCompletionSectionProps> = ({
         Cronograma das Aulas
       </h3>
 
-      <div className="space-y-3">
-        {lessons.map((lesson, index) => {
-          const isActive = lesson.status === 'active';
-          const isLocked = lesson.status === 'locked';
-          const isCompleted = index === 0 && progressPercentage >= 25;
+      <LessonSchedule
+        currentLessonId={lessons.find(l => l.status === 'active')?.id || 0}
+        onLessonChange={(id) => window.location.hash = `/aula/${id}`}
+        onLessonLocked={(date) => setShowLockedModal(date)}
+        completedLessons={lessons.filter(l => l.status === 'completed' || (l.id < (lessons.find(curr => curr.status === 'active')?.id || 0))).map(l => l.id)}
+        className="mb-6"
+      />
 
-          const CardContent = (
-            <div
-              className={`rounded-xl p-4 border-2 transition-all ${isActive
-                ? isCompleted
-                  ? 'border-green-500 bg-green-50 dark:bg-green-900/20'
-                  : 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
-                : 'border-gray-200 dark:border-neutral-700 bg-white dark:bg-neutral-900'
-                }`}
-            >
-              <div className="flex items-center gap-3">
-                <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${isCompleted
-                  ? 'bg-green-100 dark:bg-green-900/50'
-                  : isActive
-                    ? 'bg-blue-100 dark:bg-blue-900/50'
-                    : 'bg-gray-100 dark:bg-neutral-800'
-                  }`}>
-                  {isCompleted ? (
-                    <CheckCircle className="w-5 h-5 text-green-600 dark:text-green-400" />
-                  ) : isLocked ? (
-                    <Lock className="w-5 h-5 text-gray-400 dark:text-neutral-500" />
-                  ) : (
-                    <span className={`text-sm font-bold ${isActive ? 'text-blue-600 dark:text-blue-400' : 'text-gray-500'
-                      }`}>{lesson.id}</span>
-                  )}
-                </div>
-                <div className="flex-1">
-                  <h4 className={`text-sm font-bold ${isLocked ? 'text-gray-400 dark:text-neutral-500' : 'text-gray-900 dark:text-white'
-                    }`}>
-                    {lesson.title}
-                  </h4>
-                  {lesson.release_date && (
-                    <p className="text-xs text-gray-500 dark:text-neutral-400 flex items-center gap-1 mt-0.5">
-                      <Calendar className="w-3 h-3" />
-                      {new Date(lesson.release_date).toLocaleDateString('pt-BR', {
-                        day: '2-digit',
-                        month: '2-digit',
-                        hour: '2-digit',
-                        minute: '2-digit'
-                      })}
-                    </p>
-                  )}
-                </div>
-                {isActive && !isCompleted && (
-                  <span className="text-xs font-medium text-blue-600 dark:text-blue-400 bg-blue-100 dark:bg-blue-900/30 px-2 py-1 rounded-full">
-                    Atual
-                  </span>
-                )}
-              </div>
-            </div>
-          );
-
-          if (lesson.link) {
-            return (
-              <Link key={lesson.id} to={lesson.link} className="block">
-                {CardContent}
-              </Link>
-            );
-          }
-
-          return <div key={lesson.id}>{CardContent}</div>;
-        })}
-      </div>
+      <LockedLessonModal
+        isOpen={!!showLockedModal}
+        releaseDate={showLockedModal}
+        onClose={() => setShowLockedModal(null)}
+      />
 
       <div className="mt-6 bg-amber-50 dark:bg-amber-900/20 rounded-2xl p-5 border-2 border-amber-200 dark:border-amber-800/50">
         <div className="flex items-start gap-3">

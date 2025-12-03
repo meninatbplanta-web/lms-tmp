@@ -4,6 +4,7 @@ import { Play, Lock, ChevronLeft, ChevronRight, ChevronDown, ChevronUp, FileText
 import Header from '../components/Header';
 import CoursePageContent from '../components/CoursePageContent';
 import LoginModal from '../components/LoginModal';
+import LockedLessonModal from '../components/LockedLessonModal';
 import { isLessonAvailable, formatReleaseDate } from '../constants';
 import { LESSONS, LESSON_CONTENT, ALL_MODULES, COURSES } from '../data/lessons';
 import { TabOption, LessonContent, FullLessonData, PageStructure } from '../types';
@@ -12,6 +13,7 @@ import aula1Json from '../data/aula1.json';
 import aula2Json from '../data/aula2.json';
 import aula3Json from '../data/aula3.json';
 import aula4Json from '../data/aula4.json';
+import LessonSchedule from '../components/LessonSchedule';
 
 const LessonPlayer: React.FC = () => {
   const { lessonId } = useParams<{ lessonId: string }>();
@@ -252,63 +254,12 @@ const LessonPlayer: React.FC = () => {
             </div>
 
             {/* Inline Lesson List */}
-            <div className="mb-12">
-              <div className="flex items-center justify-between mb-6">
-                <h3 className="text-xs font-bold text-gray-400 dark:text-neutral-500 uppercase tracking-widest">
-                  {currentJson?.page_structure?.lesson_list?.title || "CONTEÚDO DO MINICURSO"}
-                </h3>
-                <span className="text-xs text-gray-400 dark:text-neutral-500">{courseModules[0]?.lessons.length} Aulas</span>
-              </div>
-
-              <div className="flex flex-col gap-4">
-                {courseModules[0]?.lessons.map((lesson, index) => {
-                  const isActive = lesson.id === currentLessonId;
-                  const isLocked = !isLessonAvailable(lesson);
-                  return (
-                    <div
-                      key={lesson.id}
-                      onClick={() => handleLessonChange(lesson.id)}
-                      className={`relative overflow-hidden flex items-center gap-4 p-4 rounded-xl cursor-pointer group transition-all duration-300 border 
-                        ${isActive
-                          ? 'bg-white dark:bg-neutral-900 border-brand-red/30 shadow-md transform scale-[1.02]'
-                          : 'bg-white/50 dark:bg-neutral-900/30 border-transparent hover:bg-white dark:hover:bg-neutral-900 hover:shadow-sm hover:border-gray-200 dark:hover:border-neutral-800'
-                        }`}
-                    >
-                      {isActive && <div className="absolute left-0 top-0 bottom-0 w-1 bg-brand-red"></div>}
-
-                      <div className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center transition-colors
-                        ${isActive ? 'bg-brand-red/10 text-brand-red' : 'bg-gray-100 dark:bg-neutral-800 text-gray-400 dark:text-neutral-500 group-hover:text-gray-600 dark:group-hover:text-neutral-300'}`}>
-                        {isActive ? <Play size={20} fill="currentColor" /> : (isLocked ? <Lock size={18} /> : <Play size={18} />)}
-                      </div>
-
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2 mb-0.5">
-                          <span className={`text-[10px] font-bold uppercase tracking-wider ${isActive ? 'text-brand-red' : 'text-gray-400 dark:text-neutral-500'}`}>
-                            Aula {index + 1}
-                          </span>
-                          {isActive && <span className="text-[10px] bg-brand-red text-white px-1.5 py-0.5 rounded-full">Tocando agora</span>}
-                        </div>
-                        <h4 className={`font-heading font-bold text-base md:text-lg leading-tight truncate transition-colors ${isActive ? 'text-gray-900 dark:text-white' : 'text-gray-700 dark:text-neutral-300'}`}>
-                          {lesson.title}
-                        </h4>
-                      </div>
-
-                      <div className="text-right flex-shrink-0">
-                        <span className="text-xs font-mono text-gray-400 dark:text-neutral-600 bg-gray-50 dark:bg-neutral-950 px-2 py-1 rounded">
-                          {lesson.releaseDate ? (() => {
-                            const date = new Date(lesson.releaseDate);
-                            const day = date.getDate().toString().padStart(2, '0');
-                            const month = (date.getMonth() + 1).toString().padStart(2, '0');
-                            const hours = date.getHours().toString().padStart(2, '0');
-                            return `${day}/${month} • ${hours}h`;
-                          })() : (lesson.duration || '60:00')}
-                        </span>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
+            <LessonSchedule
+              currentLessonId={currentLessonId}
+              onLessonChange={handleLessonChange}
+              onLessonLocked={(date) => setShowLockedModal(date)}
+              completedLessons={LESSONS.filter(l => l.id < currentLessonId).map(l => l.id)}
+            />
 
             {/* Content Area */}
             <div className="bg-white dark:bg-brand-black border border-gray-200 dark:border-neutral-900 rounded-2xl shadow-xl overflow-hidden transition-colors duration-300">
@@ -375,24 +326,11 @@ const LessonPlayer: React.FC = () => {
         </div>
 
         {/* Locked Modal */}
-        {showLockedModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 animate-fade-in">
-            <div className="bg-white dark:bg-brand-black border border-gray-200 dark:border-neutral-800 p-8 rounded-lg shadow-2xl max-w-md w-full text-center">
-              <Hourglass className="mx-auto text-orange-500 mb-4" size={40} />
-              <h3 className="text-xl font-heading font-bold text-gray-900 dark:text-white mb-2">Segura a ansiedade! 🧡</h3>
-              <p className="text-gray-500 dark:text-neutral-400 mb-6">
-                Estamos preparando tudo com carinho. Esta aula estreia <br />
-                <span className="text-orange-500 font-bold text-lg">{showLockedModal}</span>.
-              </p>
-              <button
-                onClick={() => setShowLockedModal(null)}
-                className="bg-gray-100 dark:bg-white text-gray-900 dark:text-black hover:bg-gray-200 dark:hover:bg-neutral-200 font-bold py-3 px-8 rounded uppercase tracking-wide transition-colors"
-              >
-                Combinado
-              </button>
-            </div>
-          </div>
-        )}
+        <LockedLessonModal
+          isOpen={!!showLockedModal}
+          releaseDate={showLockedModal}
+          onClose={() => setShowLockedModal(null)}
+        />
       </div>
     );
   }

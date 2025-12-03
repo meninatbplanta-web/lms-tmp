@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { useTheme } from '../contexts/ThemeContext';
 import { useAula1Progress } from '../hooks/useAula1Progress';
 import aula1Data from '../data/aula1-nova.json';
+import LessonSchedule from '../components/LessonSchedule';
+import LockedLessonModal from '../components/LockedLessonModal';
 
 import MobileHeader from '../components/mobile/MobileHeader';
 import MobileBottomNav from '../components/mobile/MobileBottomNav';
@@ -32,6 +34,7 @@ const Aula1MobilePage: React.FC = () => {
   const { dynamicLessons, nextLessonInfo } = useLessonStatus(1);
 
   const [activeSection, setActiveSection] = useState('teoria');
+  const [showLockedModal, setShowLockedModal] = useState<string | null>(null);
 
   const teoriaRef = useRef<HTMLDivElement>(null);
   const perfisRef = useRef<HTMLDivElement>(null);
@@ -124,12 +127,20 @@ const Aula1MobilePage: React.FC = () => {
 
       <main className="pb-20">
         <div className="px-4 py-4">
+          <LessonSchedule
+            currentLessonId={1}
+            onLessonChange={(id) => navigate(`/aula/${id}`)}
+            onLessonLocked={(date) => setShowLockedModal(date)}
+            completedLessons={[]}
+          />
           <MobileHeroSection
             bannerUrl={page_structure.banner.image_url}
             title={metadata.title}
             subtitle={metadata.subtitle}
             badge={page_structure.header_info.badge.text}
             isVideoUnlocked={isVideoUnlocked}
+            videoUrl="https://www.youtube.com/embed/wo2fdlq54Bc"
+            videoTitle="Aula 01: Fundamentos da Leitura Corporal"
             lockedMessage={page_structure.video_player.locked_message}
             onStartStudy={handleStartStudy}
           />
@@ -233,6 +244,11 @@ const Aula1MobilePage: React.FC = () => {
         activeSection={activeSection}
         onNavigate={handleNavigate}
         completedSections={progress.completedSections}
+      />
+      <LockedLessonModal
+        isOpen={!!showLockedModal}
+        releaseDate={showLockedModal}
+        onClose={() => setShowLockedModal(null)}
       />
     </div>
   );

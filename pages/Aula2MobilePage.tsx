@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { useTheme } from '../contexts/ThemeContext';
 import { useAula2Progress } from '../hooks/useAula2Progress';
 import aula2Data from '../data/aula2-nova.json';
+import LessonSchedule from '../components/LessonSchedule';
+import LockedLessonModal from '../components/LockedLessonModal';
 import { ArrowUp, Minimize2, Activity, Zap, RefreshCcw, Eye, Mic, Flame, Wind } from 'lucide-react';
 
 import MobileHeader from '../components/mobile/MobileHeader';
@@ -34,6 +36,7 @@ const Aula2MobilePage: React.FC = () => {
   const isVideoUnlocked = currentLesson?.status === 'active';
 
   const [activeSection, setActiveSection] = useState('teoria');
+  const [showLockedModal, setShowLockedModal] = useState<string | null>(null);
 
   const teoriaRef = useRef<HTMLDivElement>(null);
   const praticaRef = useRef<HTMLDivElement>(null);
@@ -124,13 +127,21 @@ const Aula2MobilePage: React.FC = () => {
         />
 
         <div className="px-4 py-4">
+          <LessonSchedule
+            currentLessonId={2}
+            onLessonChange={(id) => navigate(`/aula/${id}`)}
+            onLessonLocked={(date) => setShowLockedModal(date)}
+            completedLessons={[1]}
+          />
           <MobileHeroSection
             bannerUrl={page_structure.banner.image_url}
             title={metadata.title}
             subtitle={metadata.subtitle}
             badge={page_structure.header_info.badge.text}
             isVideoUnlocked={isVideoUnlocked}
-            lockedMessage={page_structure.video_player}
+            videoUrl="https://www.youtube.com/embed/xh5Hz9omHC0"
+            videoTitle="Aula 2: O Corpo Grita (Psicossomática)"
+            lockedMessage={page_structure.video_player.locked_message}
             onStartStudy={handleStartStudy}
           />
           <div className="mt-4 text-sm text-gray-700 dark:text-neutral-300 leading-relaxed">
@@ -427,6 +438,11 @@ const Aula2MobilePage: React.FC = () => {
         activeSection={activeSection}
         onNavigate={handleNavigate}
         completedSections={progress.completedSections}
+      />
+      <LockedLessonModal
+        isOpen={!!showLockedModal}
+        releaseDate={showLockedModal}
+        onClose={() => setShowLockedModal(null)}
       />
     </div>
   );

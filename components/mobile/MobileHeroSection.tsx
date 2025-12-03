@@ -8,6 +8,8 @@ interface MobileHeroSectionProps {
   subtitle: string;
   badge: string;
   isVideoUnlocked: boolean;
+  videoUrl?: string;
+  videoTitle?: string;
   lockedMessage: {
     title: string;
     text: string;
@@ -21,19 +23,21 @@ const MobileHeroSection: React.FC<MobileHeroSectionProps> = ({
   subtitle,
   badge,
   isVideoUnlocked,
+  videoUrl,
+  videoTitle,
   lockedMessage,
   onStartStudy,
 }) => {
   return (
     <section className="relative">
-      {isVideoUnlocked ? (
+      {isVideoUnlocked && videoUrl ? (
         <>
           <div className="relative w-full aspect-video overflow-hidden rounded-2xl bg-black">
             <iframe
               width="100%"
               height="100%"
-              src="https://www.youtube.com/embed/wo2fdlq54Bc"
-              title="Aula 01: Fundamentos da Leitura Corporal"
+              src={videoUrl}
+              title={videoTitle || title}
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
@@ -43,7 +47,7 @@ const MobileHeroSection: React.FC<MobileHeroSectionProps> = ({
           {/* Título Destacado */}
           <div className="mt-4 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 border-l-4 border-blue-500 rounded-lg">
             <h2 className="text-lg font-heading font-bold text-gray-900 dark:text-white text-center">
-              Aula 01: Fundamentos da Leitura Corporal
+              {videoTitle || title}
             </h2>
           </div>
         </>
