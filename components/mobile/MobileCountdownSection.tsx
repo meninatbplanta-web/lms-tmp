@@ -18,6 +18,8 @@ const MobileCountdownSection: React.FC<MobileCountdownSectionProps> = ({
     seconds: 0,
   });
 
+  const [isExpired, setIsExpired] = useState(false);
+
   useEffect(() => {
     const calculateTimeLeft = () => {
       const difference = +new Date(targetDate) - +new Date();
@@ -29,8 +31,10 @@ const MobileCountdownSection: React.FC<MobileCountdownSectionProps> = ({
           minutes: Math.floor((difference / 1000 / 60) % 60),
           seconds: Math.floor((difference / 1000) % 60),
         });
+        setIsExpired(false);
       } else {
         setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+        setIsExpired(true);
       }
     };
 
@@ -39,6 +43,10 @@ const MobileCountdownSection: React.FC<MobileCountdownSectionProps> = ({
 
     return () => clearInterval(timer);
   }, [targetDate]);
+
+  if (isExpired) {
+    return null;
+  }
 
   const formatNumber = (num: number) => String(num).padStart(2, '0');
 
