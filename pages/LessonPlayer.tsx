@@ -57,7 +57,7 @@ const LessonPlayer: React.FC = () => {
     : false; // Paid course is always locked in preview mode
 
   // Special rule: Lesson 1 contents always unlocked for minicourse. Paid course always locked.
-  const isContentUnlocked = currentLesson.courseId === 'minicourse' && (currentLesson.id === 1 || isUnlocked);
+  const isContentUnlocked = currentLesson.courseId === 'minicourse' && (currentLesson.id === 1 || currentLesson.id === 3 || isUnlocked);
 
   // Get next/prev lessons specifically within the context of the entire flat list
   const nextLesson = LESSONS.find(l => l.id === currentLessonId + 1 && l.courseId === currentLesson.courseId);
