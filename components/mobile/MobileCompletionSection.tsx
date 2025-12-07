@@ -24,6 +24,10 @@ interface MobileCompletionSectionProps {
     buttonText: string;
     onButtonClick?: () => void;
   };
+  secondaryAction?: {
+    text: string;
+    url: string;
+  };
 }
 
 const MobileCompletionSection: React.FC<MobileCompletionSectionProps> = ({
@@ -32,6 +36,7 @@ const MobileCompletionSection: React.FC<MobileCompletionSectionProps> = ({
   progressPercentage,
   lessons,
   nextLessonInfo,
+  secondaryAction,
 }) => {
   const [showLockedModal, setShowLockedModal] = useState<string | null>(null);
 
@@ -94,6 +99,14 @@ const MobileCompletionSection: React.FC<MobileCompletionSectionProps> = ({
             >
               {nextLessonInfo.buttonText}
             </button>
+            {secondaryAction && (
+              <button
+                onClick={() => window.open(secondaryAction.url, '_blank')}
+                className="w-full mt-3 py-2.5 px-4 bg-transparent border-2 border-amber-600 text-amber-700 dark:text-amber-300 font-semibold rounded-xl transition-all active:scale-[0.98] hover:bg-amber-50 dark:hover:bg-amber-900/10"
+              >
+                {secondaryAction.text}
+              </button>
+            )}
           </div>
         </div>
       </div>

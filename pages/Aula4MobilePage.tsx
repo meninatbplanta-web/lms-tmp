@@ -243,6 +243,14 @@ const Aula4MobilePage: React.FC = () => {
                         <p className="text-white/90 text-sm mb-6 leading-relaxed">
                             {section.text.replace(/\[cite:.*?\]/g, '').replace(/\[cite_start\]/g, '')}
                         </p>
+                        {section.id === 'sec_final_cta' && (
+                            <button
+                                onClick={() => window.open('https://i.sendflow.pro/l/TSLTiBmXzItKdVtkS4jr', '_blank')}
+                                className="w-full mb-3 py-3 bg-white text-indigo-600 rounded-xl font-bold text-sm shadow-lg active:scale-[0.98] transition-transform flex items-center justify-center gap-2"
+                            >
+                                Conhecer a Formação Completa <Zap className="w-4 h-4" />
+                            </button>
+                        )}
                         <button
                             onClick={() => {
                                 handleCompleteSection(section.id);
@@ -252,7 +260,7 @@ const Aula4MobilePage: React.FC = () => {
                                     navigate(section.action_url);
                                 }
                             }}
-                            className="w-full py-3 bg-white text-indigo-600 rounded-xl font-bold text-sm shadow-lg active:scale-[0.98] transition-transform flex items-center justify-center gap-2"
+                            className="w-full py-3 bg-white/10 border border-white/30 text-white rounded-xl font-bold text-sm shadow-lg active:scale-[0.98] transition-all flex items-center justify-center gap-2 hover:bg-white/20"
                         >
                             {section.button_text} <ArrowRight className="w-4 h-4" />
                         </button>
@@ -313,9 +321,12 @@ const Aula4MobilePage: React.FC = () => {
                         lessons={dynamicLessons}
                         nextLessonInfo={{
                             title: "Certificado",
-                            release_date: "Disponível",
                             buttonText: "Emitir Certificado",
                             onButtonClick: () => window.open('https://certificado-dusky.vercel.app/', '_blank')
+                        }}
+                        secondaryAction={{
+                            text: "Conhecer a Formação Completa",
+                            url: "https://i.sendflow.pro/l/TSLTiBmXzItKdVtkS4jr"
                         }}
                     />
                 </div>
