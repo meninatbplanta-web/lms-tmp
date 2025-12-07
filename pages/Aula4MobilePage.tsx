@@ -11,7 +11,7 @@ import MobileHeader from '../components/mobile/MobileHeader';
 import MobileBottomNav from '../components/mobile/MobileBottomNav';
 import MobileHeroSection from '../components/mobile/MobileHeroSection';
 import MobileCompletionSection from '../components/mobile/MobileCompletionSection';
-import MobileCountdownSection from '../components/mobile/MobileCountdownSection';
+
 
 import { useLessonStatus } from '../hooks/useLessonStatus';
 
@@ -280,11 +280,7 @@ const Aula4MobilePage: React.FC = () => {
             />
 
             <main className="pb-20">
-                <MobileCountdownSection
-                    targetDate="2025-12-07T15:00:00"
-                    title="AULA 4 DISPONÍVEL"
-                    subTitle="A transmissão oficial começou."
-                />
+
 
                 <div className="px-4 py-4">
                     <LessonSchedule
@@ -301,6 +297,7 @@ const Aula4MobilePage: React.FC = () => {
                         isVideoUnlocked={isVideoUnlocked}
                         lockedMessage={page_structure.video_player.locked_message}
                         onStartStudy={handleStartStudy}
+                        videoUrl={`https://www.youtube.com/embed/${page_structure.video_player.video_id}`}
                     />
                 </div>
 

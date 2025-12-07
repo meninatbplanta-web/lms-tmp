@@ -154,18 +154,29 @@ const LessonPlayer: React.FC = () => {
     <div id="video-section" className="w-full aspect-video bg-black rounded-xl border border-gray-200 dark:border-neutral-800 mb-8 relative overflow-hidden shadow-2xl">
       {isContentUnlocked ? (
         <div className="absolute inset-0 bg-black group cursor-pointer transition-colors duration-300">
-          <iframe
-            width="100%"
-            height="100%"
-            src={`https://www.youtube.com/embed/${currentJson?.page_structure?.video_player?.video_id || 'zLz7AYdBoGU'}`}
-            title="Vídeo Demonstrativo"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-            className="w-full h-full"
-          ></iframe>
-
-
+          {currentLesson.id === 4 ? (
+            <iframe
+              width="100%"
+              height="100%"
+              src="/#/aula/4"
+              title="Aula 4"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="w-full h-full"
+            ></iframe>
+          ) : (
+            <iframe
+              width="100%"
+              height="100%"
+              src={`https://www.youtube.com/embed/${currentJson?.page_structure?.video_player?.video_id || 'zLz7AYdBoGU'}`}
+              title="Vídeo Demonstrativo"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="w-full h-full"
+            ></iframe>
+          )}
         </div>
       ) : (
         <div className="absolute inset-0 flex flex-col items-center justify-center bg-gray-100 dark:bg-neutral-950 text-center p-6 transition-colors duration-300">
