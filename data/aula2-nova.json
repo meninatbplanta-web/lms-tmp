@@ -113,7 +113,7 @@
         "tabs": [
           {
             "id": "lateralidade",
-            "label": "2. Regra da Lateralidade",
+            "label": "Regra da Lateralidade",
             "content": [
               {
                 "id": "lat_intro",
@@ -128,6 +128,7 @@
                 "type": "highlight_card",
                 "title": "Lado Direito (Masculino)",
                 "text": "Representa Ação, Pai, Marido, Filho Homem, Chefe, Trabalho e Dinheiro. É o lado da caça e do 'ir para o mundo'.",
+                "image": "https://priscilla-moreira.com/imagens/aula2-2.jpg",
                 "buttonText": "Entendi: Direito = Pai/Trabalho",
                 "style": "blue"
               },
@@ -136,6 +137,7 @@
                 "type": "highlight_card",
                 "title": "Lado Esquerdo (Feminino)",
                 "text": "Representa Sentir, Acolher, Mãe, Esposa, Filha Mulher, Família e Lar. É o lado do ninho.",
+                "image": "https://priscilla-moreira.com/imagens/aula2-1.jpg",
                 "buttonText": "Entendi: Esquerdo = Mãe/Família",
                 "style": "pink"
               }
@@ -147,7 +149,7 @@
           },
           {
             "id": "cabeca_sentidos",
-            "label": "3. Cabeça e Sentidos",
+            "label": "Cabeça e Sentidos",
             "content": [
               {
                 "id": "enxaqueca",
@@ -193,7 +195,7 @@
           },
           {
             "id": "nucleo",
-            "label": "4. O Núcleo (Tronco)",
+            "label": "O Núcleo (Tronco)",
             "content": [
               {
                 "id": "garganta",
@@ -239,7 +241,7 @@
           },
           {
             "id": "estrutura",
-            "label": "5. Estrutura",
+            "label": "Estrutura",
             "content": [
               {
                 "id": "coluna",
@@ -309,7 +311,7 @@
       {
         "id": "quiz-section-2",
         "type": "quiz",
-        "title": "7. Teste de Anatomia Emocional",
+        "title": "Teste de Anatomia Emocional",
         "questions": [
           {
             "id": 1,

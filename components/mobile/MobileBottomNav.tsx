@@ -15,7 +15,7 @@ const MobileBottomNav: React.FC<MobileBottomNavProps> = ({ onLessonLocked }) => 
       id: 1,
       label: 'Aula 1',
       date: '2026-01-12T20:00:00',
-      icon: BookOpen,
+      icon: FileEdit,
       path: '/aula/1',
       subtitle: '12/01 20hs'
     },
@@ -23,7 +23,7 @@ const MobileBottomNav: React.FC<MobileBottomNavProps> = ({ onLessonLocked }) => 
       id: 2,
       label: 'Aula 2',
       date: '2026-01-14T20:00:00',
-      icon: Users,
+      icon: FileEdit,
       path: '/aula/2',
       subtitle: '14/01 20hs'
     },
@@ -39,7 +39,7 @@ const MobileBottomNav: React.FC<MobileBottomNavProps> = ({ onLessonLocked }) => 
       id: 4,
       label: 'Aula 4',
       date: '2026-01-18T15:00:00',
-      icon: HelpCircle,
+      icon: FileEdit,
       path: '/aula/4',
       subtitle: '18/01 15hs'
     },
