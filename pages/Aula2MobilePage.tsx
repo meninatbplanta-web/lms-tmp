@@ -215,6 +215,11 @@ const Aula2MobilePage: React.FC = () => {
                           <h3 className="font-bold text-gray-900 dark:text-white mb-2">
                             {card.title}
                           </h3>
+                          {card.image && (
+                            <div className="mb-3 rounded-lg overflow-hidden">
+                              <img src={card.image} alt={card.title} className="w-full h-auto object-cover" />
+                            </div>
+                          )}
                           <p className="text-sm text-gray-700 dark:text-neutral-300 mb-3">
                             {card.text}
                           </p>

@@ -281,7 +281,7 @@
       {
         "id": "quiz-section",
         "type": "quiz",
-        "title": "6. Teste de Conhecimento Técnico",
+        "title": "Teste de Conhecimento",
         "questions": [
           {
             "id": 1,
