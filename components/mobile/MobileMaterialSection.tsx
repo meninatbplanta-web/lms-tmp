@@ -34,20 +34,7 @@ const MobileMaterialSection: React.FC<MobileMaterialSectionProps> = ({ pdfUrl })
           </p>
 
           {/* Features */}
-          <div className="space-y-2 mb-6">
-            <div className="flex items-center justify-center gap-2 text-sm text-gray-700 dark:text-neutral-300">
-              <span className="text-green-500">✅</span>
-              <span>50+ páginas</span>
-            </div>
-            <div className="flex items-center justify-center gap-2 text-sm text-gray-700 dark:text-neutral-300">
-              <span className="text-green-500">✅</span>
-              <span>Mapas visuais</span>
-            </div>
-            <div className="flex items-center justify-center gap-2 text-sm text-gray-700 dark:text-neutral-300">
-              <span className="text-green-500">✅</span>
-              <span>Exercícios práticos</span>
-            </div>
-          </div>
+
 
           {/* Download Button */}
           <button

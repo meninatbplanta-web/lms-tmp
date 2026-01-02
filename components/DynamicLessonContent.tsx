@@ -178,24 +178,48 @@ const DynamicLessonContent: React.FC<DynamicLessonContentProps> = ({ data, pageS
                         </div>
                     </CardHeader>
                     <CardContent className="space-y-6 p-6 md:p-8">
+                        {card.image && (
+                            <div className="mb-6 rounded-xl overflow-hidden shadow-sm border border-slate-100 dark:border-neutral-800">
+                                <img
+                                    src={card.image}
+                                    alt={`Ilustração ${card.name}`}
+                                    className="w-full h-auto object-cover max-h-[400px]"
+                                    loading="lazy"
+                                />
+                            </div>
+                        )}
                         <div className="grid md:grid-cols-2 gap-4 text-sm md:text-base">
                             <div className="bg-slate-50 dark:bg-neutral-900 p-4 rounded-xl border border-slate-100 dark:border-neutral-800">
-                                <span className="font-bold block mb-1 text-slate-700 dark:text-slate-300 uppercase text-xs tracking-wider">Corpo</span>
+                                <span className="font-bold block mb-1 text-slate-700 dark:text-slate-300 uppercase text-xs tracking-wider">Visual</span>
                                 <span className="text-slate-600 dark:text-slate-400">{card.body}</span>
                             </div>
+                            {card.posture && (
+                                <div className="bg-indigo-50 dark:bg-indigo-900/10 p-4 rounded-xl border border-indigo-100 dark:border-indigo-900/20">
+                                    <span className="font-bold block mb-1 text-indigo-700 dark:text-indigo-300 uppercase text-xs tracking-wider">Postura</span>
+                                    <span className="text-indigo-600 dark:text-indigo-400">{card.posture}</span>
+                                </div>
+                            )}
+                            {card.personality && (
+                                <div className="bg-orange-50 dark:bg-orange-900/10 p-4 rounded-xl border border-orange-100 dark:border-orange-900/20 col-span-1 md:col-span-2">
+                                    <span className="font-bold block mb-1 text-orange-800 dark:text-orange-300 uppercase text-xs tracking-wider">Personalidade</span>
+                                    <span className="text-orange-700 dark:text-orange-400 italic">"{card.personality}"</span>
+                                </div>
+                            )}
                             <div className="bg-red-50 dark:bg-red-900/10 p-4 rounded-xl border border-red-100 dark:border-red-900/20">
                                 <span className="font-bold block mb-1 text-red-700 dark:text-red-300 uppercase text-xs tracking-wider">Dor Principal</span>
                                 <span className="text-red-600 dark:text-red-400 font-medium">{card.pain}</span>
                             </div>
-                            <div className="bg-green-50 dark:bg-green-900/10 p-4 rounded-xl border border-green-100 dark:border-green-900/20 col-span-1 md:col-span-2">
+                            <div className="bg-green-50 dark:bg-green-900/10 p-4 rounded-xl border border-green-100 dark:border-green-900/20">
                                 <span className="font-bold block mb-1 text-green-800 dark:text-green-300 uppercase text-xs tracking-wider">Superpoder</span>
                                 <span className="text-green-700 dark:text-green-400 font-medium">{card.power}</span>
                             </div>
                         </div>
 
-                        <div className="relative pl-6 border-l-4 border-slate-300 dark:border-neutral-700 py-2">
-                            <p className="text-base italic text-slate-600 dark:text-slate-400">"{card.story}"</p>
-                        </div>
+                        {card.story && !card.personality && (
+                            <div className="relative pl-6 border-l-4 border-slate-300 dark:border-neutral-700 py-2">
+                                <p className="text-base italic text-slate-600 dark:text-slate-400">"{card.story}"</p>
+                            </div>
+                        )}
 
                         <Button size="lg" className={`w-full py-6 text-base font-bold rounded-xl shadow-md transition-all hover:scale-[1.01] ${completedSections[card.id] ? "bg-green-600 hover:bg-green-700" : "bg-slate-900 hover:bg-slate-800"} text-white`} onClick={() => toggleSection(card.id)}>
                             {completedSections[card.id] ? <><Icons.CheckCircle2 className="w-5 h-5 mr-2" />Estudado</> : "Marcar como estudado"}

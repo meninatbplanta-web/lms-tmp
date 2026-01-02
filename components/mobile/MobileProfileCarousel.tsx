@@ -7,7 +7,10 @@ interface Profile {
   archetype: string;
   icon: string;
   color: string;
+  image?: string;
   body: string;
+  posture?: string;
+  personality?: string;
   pain: string;
   power: string;
   buttonText: string;
@@ -80,11 +83,10 @@ const MobileProfileCarousel: React.FC<MobileProfileCarouselProps> = ({
           <button
             key={index}
             onClick={() => scrollToIndex(index)}
-            className={`h-1.5 rounded-full transition-all duration-300 ${
-              index === activeIndex
+            className={`h-1.5 rounded-full transition-all duration-300 ${index === activeIndex
                 ? 'w-6 bg-red-500'
                 : 'w-1.5 bg-gray-300 dark:bg-neutral-700'
-            }`}
+              }`}
           />
         ))}
       </div>
@@ -106,23 +108,29 @@ const MobileProfileCarousel: React.FC<MobileProfileCarouselProps> = ({
               className="flex-shrink-0 w-[85%] snap-center"
             >
               <div className={`rounded-2xl overflow-hidden border-2 ${isCompleted ? 'border-green-500' : 'border-gray-200 dark:border-neutral-700'} bg-white dark:bg-neutral-900`}>
+                {profile.image && (
+                  <div className="w-full h-48 overflow-hidden bg-gray-100 dark:bg-neutral-800">
+                    <img src={profile.image} alt={profile.name} className="w-full h-full object-cover" />
+                  </div>
+                )}
+
                 <div className={`h-2 bg-gradient-to-r ${colors.gradient}`} />
-                
+
                 <div className="p-5">
                   <div className="flex items-center gap-3 mb-4">
-                    <div className={`w-12 h-12 rounded-xl ${colors.bg} flex items-center justify-center`}>
+                    <div className={`w-12 h-12 rounded-xl ${colors.bg} flex items-center justify-center flex-shrink-0`}>
                       <IconComponent className={`w-6 h-6 ${colors.text}`} />
                     </div>
-                    <div className="flex-1">
-                      <h3 className="text-base font-bold text-gray-900 dark:text-white">
+                    <div className="flex-1 min-w-0">
+                      <h3 className="text-base font-bold text-gray-900 dark:text-white truncate">
                         {profile.name}
                       </h3>
-                      <p className="text-sm text-gray-500 dark:text-neutral-400">
+                      <p className="text-sm text-gray-500 dark:text-neutral-400 line-clamp-2">
                         {profile.archetype}
                       </p>
                     </div>
                     {isCompleted && (
-                      <div className="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center">
+                      <div className="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center flex-shrink-0">
                         <Check className="w-4 h-4 text-white" />
                       </div>
                     )}
@@ -131,12 +139,34 @@ const MobileProfileCarousel: React.FC<MobileProfileCarouselProps> = ({
                   <div className="space-y-3">
                     <div className="bg-gray-50 dark:bg-neutral-800 rounded-xl p-3">
                       <span className="text-[10px] font-bold text-gray-400 dark:text-neutral-500 uppercase tracking-wide">
-                        Corpo
+                        Visual
                       </span>
                       <p className="text-sm text-gray-700 dark:text-neutral-300 mt-1">
                         {profile.body}
                       </p>
                     </div>
+
+                    {profile.posture && (
+                      <div className="bg-indigo-50 dark:bg-indigo-900/20 rounded-xl p-3">
+                        <span className="text-[10px] font-bold text-indigo-500 uppercase tracking-wide">
+                          Postura
+                        </span>
+                        <p className="text-sm text-gray-700 dark:text-neutral-300 mt-1">
+                          {profile.posture}
+                        </p>
+                      </div>
+                    )}
+
+                    {profile.personality && (
+                      <div className="bg-orange-50 dark:bg-orange-900/20 rounded-xl p-3">
+                        <span className="text-[10px] font-bold text-orange-500 uppercase tracking-wide">
+                          Personalidade
+                        </span>
+                        <p className="text-sm text-gray-700 dark:text-neutral-300 mt-1">
+                          {profile.personality}
+                        </p>
+                      </div>
+                    )}
 
                     <div className="bg-red-50 dark:bg-red-900/20 rounded-xl p-3">
                       <span className="text-[10px] font-bold text-red-500 uppercase tracking-wide">
@@ -149,7 +179,7 @@ const MobileProfileCarousel: React.FC<MobileProfileCarouselProps> = ({
 
                     <div className="bg-green-50 dark:bg-green-900/20 rounded-xl p-3">
                       <span className="text-[10px] font-bold text-green-500 uppercase tracking-wide">
-                        Poder
+                        Superpoder
                       </span>
                       <p className="text-sm text-gray-700 dark:text-neutral-300 mt-1">
                         {profile.power}

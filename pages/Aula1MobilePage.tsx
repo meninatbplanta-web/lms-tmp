@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTheme } from '../contexts/ThemeContext';
+// Force rebuild
 import { useAula1Progress } from '../hooks/useAula1Progress';
 import aula1Data from '../data/aula1-nova.json';
 import LessonSchedule from '../components/LessonSchedule';
